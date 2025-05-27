@@ -1,4 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
+import { theme } from './theme';
 
 const GlobalStyles = createGlobalStyle`
     * {
@@ -7,28 +8,9 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
 
-    html, body {
-        height: 100%;
-        font-family: 'Roboto', Arial, Helvetica, sans-serif;
-        background: #fff;
-        color: #333;
+    body {
+        background-color: ${theme.colors.corDeFundo};
     }
+`;
 
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    ul, ol {
-        list-style: none;
-    }
-
-    button {
-        cursor: pointer;
-        font-family: inherit;
-        border: none;
-        background: none;
-    }
-`
-
-export default GlobalStyles
+export default GlobalStyles;
