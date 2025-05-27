@@ -1,14 +1,8 @@
 import React from 'react';
-import GlobalStyles from './styles/GlobalStyles';
-import Header from './components/Header';
+import Home from './components/pages/Home';
 
-function App() {
-  return (
-    <>
-      <GlobalStyles />
-      <Header />
-    </>
-  );
-}
+const App: React.FC = () => {
+  return <Home />;
+};
 
 export default App;
