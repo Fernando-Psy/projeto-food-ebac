@@ -1,4 +1,4 @@
-import { CardContainer } from './styles';
+import { CardContainer, FoodImage } from './styles';
 
 interface FoodCardProps {
   image: string;
@@ -15,7 +15,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
 }) => {
   return (
     <CardContainer>
-      <img src={image} alt={title} />
+      <FoodImage src={image} alt={title} />
       <h3>{title}</h3>
       <p>{description}</p>
       <span>{price}</span>
