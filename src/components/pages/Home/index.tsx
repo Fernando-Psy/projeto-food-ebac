@@ -5,6 +5,7 @@ import { HomeContainer, FoodGrid } from './styles';
 
 import sushiImg from '../../../assets/images/sushi.png';
 import macarraoImg from '../../../assets/images/macarrao.png';
+import Footer from '../../Footer';
 
 const foodData = [
   {
@@ -53,6 +54,7 @@ const Home: React.FC = () => {
           <FoodCard price={''} key={index} {...food} />
         ))}
       </FoodGrid>
+      <Footer />
     </HomeContainer>
   );
 };
