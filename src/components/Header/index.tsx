@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderContainer, LogoHeader, TaglineSecondary } from './styles';
+import { HeaderContainer, LogoHeader } from './styles';
 import logo from '../../assets/images/logo.svg';
 
 const Header: React.FC = () => {
@@ -10,7 +10,6 @@ const Header: React.FC = () => {
         Viva experiências gastronômicas <br />
         no conforto de sua casa
       </p>
-      <TaglineSecondary></TaglineSecondary>
     </HeaderContainer>
   );
 };
