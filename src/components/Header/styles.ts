@@ -25,11 +25,10 @@ export const HeaderContainer = styled.header`
   }
 `;
 
-export const Logo = styled.img`
+export const LogoHeader = styled.img`
   width: 150px;
   height: auto;
   margin-top: 64px;
-  border-radius: 8px;
 `;
 
 export const TaglineSecondary = styled.h2`

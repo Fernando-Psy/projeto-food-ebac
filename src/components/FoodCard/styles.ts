@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
-import estrelaImage from '../../assets/images/estrela.png';
 
 export const CardContainer = styled.div`
   display: grid;
@@ -31,9 +30,9 @@ export const FoodImage = styled.img`
 
 export const Assessment = styled.p`
   font-size: 20px;
-    margin-top: 8px;
-    margin-left: 7px;
-    color: ${theme.colors.corPrincipal}
+  margin-top: 8px;
+  margin-left: 7px;
+  color: ${theme.colors.corPrincipal};
 `;
 
 export const Button = styled.button`

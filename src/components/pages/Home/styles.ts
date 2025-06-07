@@ -9,6 +9,8 @@ export const HomeContainer = styled.div`
 
 export const FoodGrid = styled.div`
   display: grid;
+  justify-content: center;
+  align-items: center;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 80px;
   margin-top: 80px;
