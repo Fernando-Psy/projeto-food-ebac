@@ -14,20 +14,24 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: center;
   height: 384px;
+  border-radius: 8px;
+
+  p {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 900;
+    color: ${theme.colors.corPrincipal};
+    margin-top: 140px;
+  }
 `;
 
 export const Logo = styled.img`
   width: 150px;
   height: auto;
   margin-top: 64px;
+  border-radius: 8px;
 `;
 
-export const Tagline = styled.h2`
-  font-size: 36px;
-  font-weight: 900;
-  color: ${theme.colors.corPrincipal};
-  margin-top: 140px;
-`;
 export const TaglineSecondary = styled.h2`
   font-size: 36px;
   font-weight: 900;
