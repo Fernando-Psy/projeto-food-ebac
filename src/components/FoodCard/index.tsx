@@ -1,4 +1,4 @@
-import { CardContainer, FoodImage } from './styles';
+import { Button, CardContainer, FoodImage } from './styles';
 
 interface FoodCardProps {
   image: string;
@@ -19,6 +19,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
       <h3>{title}</h3>
       <p>{description}</p>
       <span>{price}</span>
+      <Button>Saiba mais</Button>
     </CardContainer>
   );
 };
