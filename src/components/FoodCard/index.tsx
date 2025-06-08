@@ -1,6 +1,9 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, CardContainer, FoodImage } from './styles';
 
 interface FoodCardProps {
+  id?: string;
   image: string;
   title: string;
   description: string;
@@ -8,6 +11,7 @@ interface FoodCardProps {
 }
 
 const FoodCard: React.FC<FoodCardProps> = ({
+  id = '1',
   image,
   title,
   description,
@@ -19,7 +23,9 @@ const FoodCard: React.FC<FoodCardProps> = ({
       <h3>{title}</h3>
       <p>{description}</p>
       <span>{price}</span>
-      <Button>Saiba mais</Button>
+      <Button as={Link} to={`/restaurant/${id}`}>
+        Saiba mais
+      </Button>
     </CardContainer>
   );
 };
