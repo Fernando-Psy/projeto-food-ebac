@@ -13,17 +13,16 @@ export const HeaderContainer = styled.header`
   background-repeat: no-repeat;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  padding: 40px 20px;
+  padding-top: 20px;
 
   @media (max-width: 768px) {
     min-height: 300px;
-    padding: 32px 16px;
+    padding-top: 16px;
   }
 
   @media (max-width: 480px) {
     min-height: 250px;
-    padding: 24px 12px;
+    padding-top: 12px;
   }
 
   p {

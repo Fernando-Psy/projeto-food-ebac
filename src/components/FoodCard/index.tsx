@@ -1,11 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, CardContainer, FoodImage } from './styles';
+import Estrela from '../../assets/images/estrela.png';
+import {
+  AssessmentImg,
+  Button,
+  CardContainer,
+  ContainerTitle,
+  DescriptionCard,
+  DishButton,
+  EmphasisButton,
+  FoodImage,
+  TitleCard,
+} from './styles';
 
 interface FoodCardProps {
   id?: string;
   image: string;
   title: string;
+  emphasis?: string;
+  dish?: string;
+  assessment: string;
   description: string;
   price: string;
 }
@@ -14,14 +28,25 @@ const FoodCard: React.FC<FoodCardProps> = ({
   id = '1',
   image,
   title,
+  emphasis,
+  dish,
+  assessment,
   description,
   price,
 }) => {
   return (
     <CardContainer>
       <FoodImage src={image} alt={title} />
-      <h3>{title}</h3>
-      <p>{description}</p>
+      {emphasis && <EmphasisButton>{emphasis}</EmphasisButton>}
+      {dish && <DishButton>{dish}</DishButton>}
+      <ContainerTitle>
+        <TitleCard>{title}</TitleCard>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <TitleCard>{assessment}</TitleCard>
+          <AssessmentImg src={Estrela} alt="Estrela" />
+        </div>
+      </ContainerTitle>
+      <DescriptionCard>{description}</DescriptionCard>
       <span>{price}</span>
       <Button as={Link} to={`/restaurant/${id}`}>
         Saiba mais
