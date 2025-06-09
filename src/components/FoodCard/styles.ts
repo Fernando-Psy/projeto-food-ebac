@@ -84,7 +84,7 @@ export const DishButton = styled.div`
   color: ${theme.colors.corSecundaria};
   position: absolute;
   right: 8px;
-  left: auto
+  left: auto;
   text-decoration: none;
   padding: 6px 12px;
   text-align: center;

@@ -70,7 +70,7 @@ const Home: React.FC = () => {
       <Header />
       <FoodGrid>
         {foodData.map((food, index) => (
-          <FoodCard price={''} key={food.id} {...food} />
+          <FoodCard key={food.id} {...food} />
         ))}
       </FoodGrid>
       <Footer />
