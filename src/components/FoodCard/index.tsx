@@ -21,7 +21,6 @@ interface FoodCardProps {
   dish?: string;
   assessment: string;
   description: string;
-  price: string;
 }
 
 const FoodCard: React.FC<FoodCardProps> = ({
@@ -32,7 +31,6 @@ const FoodCard: React.FC<FoodCardProps> = ({
   dish,
   assessment,
   description,
-  price,
 }) => {
   return (
     <CardContainer>
@@ -47,7 +45,6 @@ const FoodCard: React.FC<FoodCardProps> = ({
         </div>
       </ContainerTitle>
       <DescriptionCard>{description}</DescriptionCard>
-      <span>{price}</span>
       <Button as={Link} to={`/restaurant/${id}`}>
         Saiba mais
       </Button>

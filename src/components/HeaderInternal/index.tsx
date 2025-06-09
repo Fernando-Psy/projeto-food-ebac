@@ -13,7 +13,7 @@ const HeaderInternal: React.FC = () => {
 
         <LogoHeader src={logo} alt="Logo Cheff" />
 
-        <NavLink href="#" onClick={() => console.log('Carrinho clicado')}>
+        <NavLink href="#" onClick={() => 'Carrinho clicado'}>
           0 produto(s) no carrinho
         </NavLink>
       </HeaderContent>
