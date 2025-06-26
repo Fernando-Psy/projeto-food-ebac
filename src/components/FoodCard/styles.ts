@@ -3,7 +3,11 @@ import { theme } from '../../styles/theme';
 
 export const CardContainer = styled.div`
   position: relative;
+  width: 472px;
   display: flex;
+  justfi-content: center;
+  margin-right: 32px;
+  margin-left: 32px;
   flex-direction: column;
   border: 1px solid ${theme.colors.corPrincipal};
   background-color: ${theme.colors.corBranco};
@@ -11,7 +15,6 @@ export const CardContainer = styled.div`
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-  // Responsividade
   @media (max-width: 768px) {
     margin-bottom: 24px;
   }
