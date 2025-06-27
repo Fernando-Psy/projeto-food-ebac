@@ -13,7 +13,7 @@ export const HeroSection = styled.div`
   width: 100%;
   height: 280px;
   overflow: hidden;
-  margin-top: -93px; // Sobrepõe o header
+  margin-top: -93px;
   z-index: -1;
 
   @media (max-width: 768px) {
@@ -118,6 +118,12 @@ export const MenuGrid = styled.div`
 `;
 
 export const MenuItem = styled.div`
+  width: 100%;
+  max-width: 320px;
+  min-width: 220px;
+  min-height: 338px;
+  position: relative;
+  top: 56px;
   background-color: ${theme.colors.corPrincipal};
   border: 8px solid ${theme.colors.corPrincipal};
   overflow: hidden;
@@ -126,6 +132,13 @@ export const MenuItem = styled.div`
 
   &:hover {
     transform: translateY(-4px);
+  }
+
+  @media (max-width: 480px) {
+    min-width: 0;
+    max-width: 100%;
+    top: 32px;
+    min-height: unset;
   }
 `;
 
