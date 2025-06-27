@@ -118,8 +118,10 @@ export const MenuGrid = styled.div`
 `;
 
 export const MenuItem = styled.div`
-  width: 320px;
-  height: 338px;
+  width: 100%;
+  max-width: 320px;
+  min-width: 220px;
+  min-height: 338px;
   position: relative;
   top: 56px;
   background-color: ${theme.colors.corPrincipal};
@@ -130,6 +132,13 @@ export const MenuItem = styled.div`
 
   &:hover {
     transform: translateY(-4px);
+  }
+
+  @media (max-width: 480px) {
+    min-width: 0;
+    max-width: 100%;
+    top: 32px;
+    min-height: unset;
   }
 `;
 

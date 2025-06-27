@@ -3,11 +3,11 @@ import { theme } from '../../styles/theme';
 
 export const CardContainer = styled.div`
   position: relative;
-  width: 472px;
+  width: 100%;
+  max-width: 472px;
   display: flex;
-  justfi-content: center;
-  margin-right: 32px;
-  margin-left: 32px;
+  justify-content: center;
+  margin: 0 32px;
   flex-direction: column;
   border: 1px solid ${theme.colors.corPrincipal};
   background-color: ${theme.colors.corBranco};
