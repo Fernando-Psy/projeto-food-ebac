@@ -13,8 +13,8 @@ export const HeroSection = styled.div`
   width: 100%;
   height: 280px;
   overflow: hidden;
-  margin-top: -93px;
-  z-index: -1;
+  margin-top: -23px;
+  z-index: 1;
 
   @media (max-width: 768px) {
     height: 220px;
@@ -42,7 +42,7 @@ export const HeroContent = styled.div`
   color: white;
   text-align: left;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1024px;
   padding: 0 40px;
 
   @media (max-width: 768px) {
@@ -62,7 +62,7 @@ export const CategoryTag = styled.span`
   font-weight: 100;
   opacity: 0.8;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 156.5px;
 
   @media (max-width: 768px) {
     font-size: 24px;
@@ -89,7 +89,7 @@ export const RestaurantTitle = styled.h1`
 
 export const ContentSection = styled.div`
   width: 100%;
-  max-width: 1200px;
+  max-width: 1024px;
   padding: 56px 40px 0;
 
   @media (max-width: 768px) {
@@ -104,6 +104,7 @@ export const ContentSection = styled.div`
 export const MenuGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  padding-bottom: 40px;
   gap: 32px;
 
   @media (max-width: 1024px) {
@@ -123,7 +124,6 @@ export const MenuItem = styled.div`
   min-width: 220px;
   min-height: 338px;
   position: relative;
-  top: 56px;
   background-color: ${theme.colors.corPrincipal};
   border: 8px solid ${theme.colors.corPrincipal};
   overflow: hidden;
@@ -143,13 +143,17 @@ export const MenuItem = styled.div`
 `;
 
 export const MenuImage = styled.img`
-  width: 100%;
   height: 167px;
-  object-fit: cover;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
 `;
 
 export const MenuInfo = styled.div`
-  padding: 16px;
+  padding-top: 8px;
 `;
 
 export const MenuTitle = styled.h3`
@@ -167,8 +171,9 @@ export const MenuDescription = styled.p`
 `;
 
 export const AddButton = styled.button`
-  width: 100%;
+  width: 304px;
   height: 24px;
+  padding: 6px;
   background-color: ${theme.colors.corSecundaria};
   color: ${theme.colors.corPrincipal};
   border: none;

@@ -3,15 +3,14 @@ import { theme } from '../../styles/theme';
 
 export const CardContainer = styled.div`
   position: relative;
-  width: 100%;
   max-width: 472px;
+  max-height: 398px;
+  margin: 0 40px 48px 40px;
   display: flex;
   justify-content: center;
-  margin: 0 32px;
   flex-direction: column;
   border: 1px solid ${theme.colors.corPrincipal};
   background-color: ${theme.colors.corBranco};
-  margin-bottom: 48px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
@@ -34,15 +33,17 @@ export const CardContainer = styled.div`
 
 export const ContainerTitle = styled.div`
   padding-top: 8px;
+  padding-bottom: 0;
   display: flex;
   justify-content: space-between;
 `;
 
 export const TitleCard = styled.h3`
-  padding-left: 7px;
   font-size: 22px;
   font-weight: bold;
-  margin: 16px 8px 8px 8px;
+  margin-top: 8px;
+  margin-right: 8px;
+  margin-left: 7px;
   color: ${theme.colors.corPrincipal};
 
   @media (max-width: 480px) {
@@ -59,7 +60,6 @@ export const AssessmentImg = styled.img`
 
 export const DescriptionCard = styled.p`
   font-size: 14px;
-  padding: 16px 8px;
   font-weight: 400;
   text-align: left;
   margin: 8px;
@@ -83,20 +83,15 @@ export const FoodImage = styled.img`
 `;
 
 export const DishButton = styled.div`
-  background-color: ${theme.colors.corPrincipal};
-  color: ${theme.colors.corSecundaria};
   position: absolute;
+  top: 16px;
   right: 8px;
   left: auto;
-  text-decoration: none;
+  background-color: ${theme.colors.corPrincipal};
+  color: ${theme.colors.corSecundaria};
   padding: 6px 12px;
-  text-align: center;
-  border: none;
-  margin: 16px 8px 0 8px;
   font-size: 14px;
   font-weight: bold;
-  transition: all 0.3s ease;
-  width: fit-content;
   z-index: 1;
 
   @media (max-width: 480px) {
@@ -119,15 +114,16 @@ export const EmphasisButton = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 82px;
-  height: 24px;
+  width: 98px;
+  height: 32px;
   background-color: ${theme.colors.corPrincipal};
   color: ${theme.colors.corSecundaria};
   text-decoration: none;
-  padding: 4px;
+  padding: 6px 12px;
   text-align: center;
   border: none;
-  margin: 16px 8px 16px 8px;
+  margin: 8px;
+  margin-bottom: 16px;
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;

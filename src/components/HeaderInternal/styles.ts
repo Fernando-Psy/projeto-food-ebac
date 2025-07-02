@@ -27,7 +27,7 @@ export const HeaderContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 1024px;
   max-width: 1200px;
   padding: 0 40px;
 
@@ -44,7 +44,7 @@ export const HeaderContent = styled.div`
 
 export const LogoHeader = styled.img`
   width: 125px;
-  height: auto;
+  height: 57.5px;
 
   @media (max-width: 480px) {
     width: 100px;

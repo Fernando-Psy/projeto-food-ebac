@@ -16,9 +16,8 @@ export const FoodGrid = styled.div`
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
   margin-top: 80px;
-  max-width: 1200px;
+  max-width: 1024px;
   width: 100%;
 
   @media (max-width: 1024px) {
