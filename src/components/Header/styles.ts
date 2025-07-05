@@ -15,14 +15,24 @@ export const HeaderContainer = styled.header`
   justify-content: center;
   padding-top: 20px;
 
+  @media (max-width: 1024px) {
+    min-height: 320px;
+    padding: 18px 16px;
+  }
+
   @media (max-width: 768px) {
-    min-height: 300px;
-    padding-top: 16px;
+    min-height: 280px;
+    padding: 16px 12px;
   }
 
   @media (max-width: 480px) {
-    min-height: 250px;
-    padding-top: 12px;
+    min-height: 240px;
+    padding: 12px 8px;
+  }
+
+  @media (max-height: 360px) {
+    min-height: 220px;
+    padding: 10px 6px;
   }
 
   p {
@@ -33,17 +43,30 @@ export const HeaderContainer = styled.header`
     margin-top: 32px;
     line-height: 1.2;
 
+    @media (max-width: 1024px) {
+      font-size: 32px;
+      margin-top: 28px;
+    }
+
     @media (max-width: 768px) {
       font-size: 28px;
       margin-top: 24px;
+      max-width: 600px;
     }
 
     @media (max-width: 480px) {
       font-size: 22px;
       margin-top: 20px;
+      max-width: 320px;
       br {
         display: none;
       }
+    }
+
+    @media (max-height: 360px) {
+      font-size: 20px;
+      margin-top: 16px;
+      max-width: 280px;
     }
   }
 `;
@@ -52,7 +75,19 @@ export const LogoHeader = styled.img`
   width: 150px;
   height: auto;
 
+  @media (max-width: 1024px) {
+    width: 140px;
+  }
+
+  @media (max-width: 768px) {
+    width: 130px;
+  }
+
   @media (max-width: 480px) {
     width: 120px;
+  }
+
+  @media (max-height: 360px) {
+    width: 100px;
   }
 `;

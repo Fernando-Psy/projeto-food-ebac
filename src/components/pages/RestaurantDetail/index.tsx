@@ -19,7 +19,6 @@ import {
   AddButton,
 } from './styles';
 
-// Imagens de exemplo (substitua pelos seus assets)
 import restaurantHero from '../../../assets/images/macarrao.png';
 import dish1 from '../../../assets/images/marguerita.png';
 

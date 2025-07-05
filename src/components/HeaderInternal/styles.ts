@@ -14,12 +14,19 @@ export const HeaderContainer = styled.header`
   justify-content: center;
   position: relative;
 
+  @media (max-width: 1024px) {
+    height: 160px;
+    padding: 0 16px;
+  }
+
   @media (max-width: 768px) {
     height: 140px;
+    padding: 0 12px;
   }
 
   @media (max-width: 480px) {
-    height: 120px;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 `;
 
@@ -31,14 +38,23 @@ export const HeaderContent = styled.div`
   max-width: 1200px;
   padding: 0 40px;
 
+  @media (max-width: 1024px) {
+    padding: 0 16px;
+  }
+
   @media (max-width: 768px) {
-    padding: 0 20px;
+    padding: 0 12px;
   }
 
   @media (max-width: 480px) {
-    padding: 0 16px;
+    padding: 0 8px;
     flex-direction: column;
     gap: 12px;
+    justify-content: center;
+  }
+
+  @media (max-width: 360px) {
+    gap: 6px;
   }
 `;
 
@@ -46,8 +62,21 @@ export const LogoHeader = styled.img`
   width: 125px;
   height: 57.5px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 1024px) {
+    width: 110px;
+  }
+
+  @media (max-width: 768px) {
     width: 100px;
+  }
+
+  @media (max-width: 480px) {
+    width: 90px;
+    order: 2;
+  }
+
+  @media (max-width: 360px) {
+    width: 80px;
   }
 `;
 
@@ -64,12 +93,33 @@ export const NavLink = styled.a`
     transform: translateY(-1px);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 15px;
   }
 
   @media (max-width: 480px) {
     font-size: 14px;
     text-align: center;
+    padding: 4px 0;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 13px;
+  }
+
+  &:last-child {
+    @media (max-width: 480px) {
+      order: 1;
+    }
+  }
+
+  &:first-child {
+    @media (max-width: 480px) {
+      order: 3;
+    }
   }
 `;

@@ -16,14 +16,19 @@ export const HeroSection = styled.div`
   margin-top: -23px;
   z-index: 1;
 
+  @media (max-width: 1024px) {
+    height: 240px;
+    margin-top: -20px;
+  }
+
   @media (max-width: 768px) {
-    height: 220px;
-    margin-top: -70px;
+    height: 200px;
+    margin-top: -18px;
   }
 
   @media (max-width: 480px) {
-    height: 180px;
-    margin-top: -60px;
+    height: 160px;
+    margin-top: -15px;
   }
 `;
 
@@ -32,6 +37,10 @@ export const HeroImage = styled.img`
   height: 100%;
   object-fit: cover;
   filter: brightness(0.6);
+
+  @media (max-width: 480px) {
+    padding-top: 16px;
+  }
 `;
 
 export const HeroContent = styled.div`
@@ -44,6 +53,11 @@ export const HeroContent = styled.div`
   width: 100%;
   max-width: 1024px;
   padding: 0 40px;
+
+  @media (max-width: 1024px) {
+    bottom: 28px;
+    padding: 0 32px;
+  }
 
   @media (max-width: 768px) {
     bottom: 24px;
@@ -64,6 +78,31 @@ export const CategoryTag = styled.span`
   display: block;
   margin-bottom: 156.5px;
 
+  @media (max-width: 1024px) {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+    margin-bottom: 2px;
+  }
+`;
+
+export const RestaurantTitle = styled.h1`
+  font-size: 32px;
+  font-weight: 900;
+  margin: 0;
+
+  @media (max-width: 1024px) {
+    font-size: 28px;
+  }
+
   @media (max-width: 768px) {
     font-size: 24px;
   }
@@ -73,24 +112,14 @@ export const CategoryTag = styled.span`
   }
 `;
 
-export const RestaurantTitle = styled.h1`
-  font-size: 32px;
-  font-weight: 900;
-  margin: 0;
-
-  @media (max-width: 768px) {
-    font-size: 28px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 24px;
-  }
-`;
-
 export const ContentSection = styled.div`
   width: 100%;
   max-width: 1024px;
   padding: 56px 40px 0;
+
+  @media (max-width: 1024px) {
+    padding: 48px 32px 0;
+  }
 
   @media (max-width: 768px) {
     padding: 40px 20px 0;
@@ -108,13 +137,21 @@ export const MenuGrid = styled.div`
   gap: 32px;
 
   @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+    padding-bottom: 32px;
   }
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    padding-bottom: 24px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-bottom: 16px;
   }
 `;
 
@@ -134,11 +171,18 @@ export const MenuItem = styled.div`
     transform: translateY(-4px);
   }
 
+  @media (max-width: 1024px) {
+    min-height: 320px;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 300px;
+  }
+
   @media (max-width: 480px) {
-    min-width: 0;
+    min-width: auto;
     max-width: 100%;
-    top: 32px;
-    min-height: unset;
+    border: 6px solid ${theme.colors.corPrincipal};
   }
 `;
 
@@ -150,10 +194,27 @@ export const MenuImage = styled.img`
   align-items: center;
   background-size: cover;
   background-position: center;
+
+  @media (max-width: 1024px) {
+    height: 150px;
+  }
+
+  @media (max-width: 768px) {
+    height: 140px;
+  }
+
+  @media (max-width: 480px) {
+    height: 160px;
+  }
 `;
 
 export const MenuInfo = styled.div`
   padding-top: 8px;
+
+  @media (max-width: 480px) {
+    padding: 6px;
+    gap: 6px;
+  }
 `;
 
 export const MenuTitle = styled.h3`
@@ -161,6 +222,14 @@ export const MenuTitle = styled.h3`
   font-weight: 900;
   color: ${theme.colors.corSecundaria};
   margin-bottom: 8px;
+
+  @media (max-width: 1024px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 
 export const MenuDescription = styled.p`
@@ -168,6 +237,15 @@ export const MenuDescription = styled.p`
   color: ${theme.colors.corSecundaria};
   line-height: 1.4;
   margin-bottom: 12px;
+
+  @media (max-width: 1024px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    -webkit-line-clamp: 2;
+  }
 `;
 
 export const AddButton = styled.button`
@@ -185,5 +263,15 @@ export const AddButton = styled.button`
   &:hover {
     background-color: #f5d5b8;
     transform: translateY(-1px);
+  }
+
+  @media (max-width: 1024px) {
+    height: 34px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    height: 32px;
+    font-size: 12px;
   }
 `;
