@@ -80,17 +80,17 @@ export const CategoryTag = styled.span`
 
   @media (max-width: 1024px) {
     font-size: 28px;
-    margin-bottom: 6px;
+    margin-bottom: 86px;
   }
 
   @media (max-width: 768px) {
     font-size: 24px;
-    margin-bottom: 4px;
+    margin-bottom: 84px;
   }
 
   @media (max-width: 480px) {
     font-size: 20px;
-    margin-bottom: 2px;
+    margin-bottom: 64px;
   }
 `;
 
@@ -118,11 +118,11 @@ export const ContentSection = styled.div`
   padding: 56px 40px 0;
 
   @media (max-width: 1024px) {
-    padding: 48px 32px 0;
+    align-itens: center;
   }
 
   @media (max-width: 768px) {
-    padding: 40px 20px 0;
+    align-itens: center;
   }
 
   @media (max-width: 480px) {
@@ -197,14 +197,17 @@ export const MenuImage = styled.img`
 
   @media (max-width: 1024px) {
     height: 150px;
+    width: 100%;
   }
 
   @media (max-width: 768px) {
     height: 140px;
+    width: 100%;
   }
 
   @media (max-width: 480px) {
     height: 160px;
+    width: 100%;
   }
 `;
 
@@ -268,10 +271,12 @@ export const AddButton = styled.button`
   @media (max-width: 1024px) {
     height: 34px;
     font-size: 13px;
+    width: 100%;
   }
 
   @media (max-width: 480px) {
     height: 32px;
     font-size: 12px;
+    width: 100%;
   }
 `;
