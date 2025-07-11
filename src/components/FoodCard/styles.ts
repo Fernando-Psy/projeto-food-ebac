@@ -47,23 +47,38 @@ export const CardContainer = styled.div`
   }
 `;
 
-export const ContainerTitle = styled.div`
+export const TitleCards = styled.div`
   padding-top: 8px;
-  padding-bottom: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 16px;
+  @media (max-width: 480px) {
+    padding: 6px;
+  }
+`;
+
+export const ContainerTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 
   @media (max-width: 480px) {
     padding: 6px;
   }
 `;
 
-export const TitleCard = styled.h3`
+export const TitleCard = styled.li`
+  padding-top: 8px;
   font-size: 22px;
   font-weight: bold;
-  margin-top: 8px;
-  margin-right: 8px;
-  margin-left: 7px;
   color: ${theme.colors.corPrincipal};
 
   @media (max-width: 1024px) {
@@ -80,7 +95,7 @@ export const TitleCard = styled.h3`
 `;
 
 export const AssessmentImg = styled.img`
-  margin: 8px;
+  padding-top: 8px;
   width: 21px;
   height: 21px;
   flex-shrink: 0;
@@ -99,6 +114,7 @@ export const DescriptionCard = styled.p`
   margin: 8px;
   color: ${theme.colors.corPrincipal};
   line-height: 1.5;
+  padding-bottom: 64px;
 
   @media (max-height: 768px) {
     font-size: 13px;
@@ -114,9 +130,11 @@ export const DescriptionCard = styled.p`
 `;
 
 export const FoodImage = styled.img`
-  width: 100%;
-  height: 217px;
+  max-width: 472px;
+  max-height: 217px;
   object-fit: cover;
+  width: 100%;
+  height: 100%;
 
   @media (max-width: 1024px) {
     height: 200px;
@@ -161,7 +179,7 @@ export const DishButton = styled.div`
 export const EmphasisButton = styled.div`
   position: absolute;
   top: 16px;
-  right: 112px;
+  right: 96px;
   left: auto;
   background-color: ${theme.colors.corPrincipal};
   color: ${theme.colors.corSecundaria};
@@ -192,10 +210,11 @@ export const Button = styled.button`
   color: ${theme.colors.corSecundaria};
   text-decoration: none;
   padding: 6px 12px;
+  position: absolute;
   text-align: center;
   border: none;
-  margin: 8px;
-  margin-bottom: 16px;
+  margin: 24px 8px 0 8px;
+  bottom: 8px;
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;

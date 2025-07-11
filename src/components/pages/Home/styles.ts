@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { theme } from '../../../styles/theme';
 
 export const HomeContainer = styled.div`
   width: 100%;
@@ -57,4 +58,21 @@ export const FoodGrid = styled.div`
     gap: 12px;
     margin-top: 24px;
   }
+`;
+
+export const LoadingMessage = styled.div`
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+`;
+
+export const ErrorMessage = styled.div`
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: ${theme.colors.corPrincipal};
+  background-color: ${theme.colors.corSecundaria};
+  border-radius: 8px;
+  margin: 20px;
 `;

@@ -194,6 +194,8 @@ export const MenuImage = styled.img`
   align-items: center;
   background-size: cover;
   background-position: center;
+  max-width: 304px;
+  width: 100%;
 
   @media (max-width: 1024px) {
     height: 150px;
@@ -264,7 +266,6 @@ export const AddButton = styled.button`
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: #f5d5b8;
     transform: translateY(-1px);
   }
 
@@ -279,4 +280,21 @@ export const AddButton = styled.button`
     font-size: 12px;
     width: 100%;
   }
+`;
+
+export const LoadingMessage = styled.div`
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+`;
+
+export const ErrorMessage = styled.div`
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: ${theme.colors.corPrincipal};
+  background-color: ${theme.colors.corSecundaria};
+  border-radius: 8px;
+  margin: 20px;
 `;

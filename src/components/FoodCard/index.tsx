@@ -11,6 +11,7 @@ import {
   EmphasisButton,
   FoodImage,
   TitleCard,
+  TitleCards,
 } from './styles';
 
 interface FoodCardProps {
@@ -39,10 +40,10 @@ const FoodCard: React.FC<FoodCardProps> = ({
       {dish && <DishButton>{dish}</DishButton>}
       <ContainerTitle>
         <TitleCard>{title}</TitleCard>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <TitleCard>{assessment}</TitleCard>
-          <AssessmentImg src={Estrela} alt="Estrela" />
-        </div>
+        <li>
+          <span>{assessment}</span>
+          <AssessmentImg src={Estrela} alt="Avaliação" />
+        </li>
       </ContainerTitle>
       <DescriptionCard>{description}</DescriptionCard>
       <Button as={Link} to={`/restaurant/${id}`}>
