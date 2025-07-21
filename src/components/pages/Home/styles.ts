@@ -3,10 +3,9 @@ import { theme } from '../../../styles/theme';
 
 export const HomeContainer = styled.div`
   width: 100%;
-  display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 20px;
+  justify-content: center;
 
   @media (max-width: 1024px) {
     padding: 0 16px;
@@ -22,12 +21,13 @@ export const HomeContainer = styled.div`
 `;
 
 export const FoodGrid = styled.div`
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(2, 1fr);
-  margin-top: 80px;
   max-width: 1024px;
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 80px;
+  gap: 0 80px;
+  align-items: center;
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);

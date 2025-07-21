@@ -35,11 +35,13 @@ const Home: React.FC = () => {
 
   if (loading) {
     return (
-      <HomeContainer>
+      <>
         <Header />
-        <LoadingMessage>Carregando restaurantes...</LoadingMessage>
-        <Footer />
-      </HomeContainer>
+        <HomeContainer>
+          <LoadingMessage>Carregando restaurantes...</LoadingMessage>
+          <Footer />
+        </HomeContainer>
+      </>
     );
   }
 

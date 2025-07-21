@@ -5,19 +5,15 @@ export const CardContainer = styled.div`
   position: relative;
   max-width: 472px;
   max-height: 398px;
-  margin: 0 40px 48px 40px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  width: 100%;
+  height: 100%;
   border: 1px solid ${theme.colors.corPrincipal};
+  display: flex;
+  margin: 0 40px 48px 40px;
+  flex-direction: column;
+  align-items: relative;
   background-color: ${theme.colors.corBranco};
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-  @media (max-width: 1024px) {
-    max-width: 400px;
-    margin: 0 20px 40px 20px;
-  }
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
     max-width: 100%;
@@ -47,50 +43,16 @@ export const CardContainer = styled.div`
   }
 `;
 
-export const TitleCards = styled.div`
-  padding-top: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  margin: 0;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0 16px;
-  @media (max-width: 480px) {
-    padding: 6px;
-  }
-`;
-
 export const ContainerTitle = styled.div`
+  min-width: 100%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding-top: 8px;
   list-style: none;
-  padding: 0;
-  margin: 0;
 
   @media (max-width: 480px) {
     padding: 6px;
-  }
-`;
-
-export const TitleCard = styled.li`
-  padding-top: 8px;
-  font-size: 22px;
-  font-weight: bold;
-  color: ${theme.colors.corPrincipal};
-
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 18px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 16px;
   }
 `;
 
@@ -130,11 +92,9 @@ export const DescriptionCard = styled.p`
 `;
 
 export const FoodImage = styled.img`
-  max-width: 472px;
-  max-height: 217px;
-  object-fit: cover;
   width: 100%;
-  height: 100%;
+  height: 217px;
+  object-fit: cover;
 
   @media (max-width: 1024px) {
     height: 200px;
