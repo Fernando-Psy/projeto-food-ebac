@@ -27,20 +27,17 @@ export const FoodGrid = styled.div`
   @media (max-width: 768px) {
     width: 90%;
     grid-template-columns: 1fr;
-    gap: 20px;
     margin-top: 40px;
     max-width: 500px;
   }
 
   @media (max-width: 480px) {
     width: 90%;
-    gap: 16px;
     margin-top: 32px;
     max-width: 100%;
   }
 
   @media (max-height: 360px) {
-    gap: 12px;
     margin-top: 24px;
   }
 `;

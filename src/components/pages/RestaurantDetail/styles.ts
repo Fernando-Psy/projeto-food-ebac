@@ -255,10 +255,13 @@ export const MenuDescription = styled.p`
 
 export const AddButton = styled.button`
   display: inline-block;
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
   margin-top: auto;
   width: 304px;
   height: 24px;
-  padding: 6px;
   background-color: ${theme.colors.corSecundaria};
   color: ${theme.colors.corPrincipal};
   border: none;
@@ -266,10 +269,6 @@ export const AddButton = styled.button`
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-1px);
-  }
 
   @media (max-width: 480px) {
     height: 32px;
