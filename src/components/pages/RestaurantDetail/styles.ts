@@ -241,7 +241,7 @@ export const MenuDescription = styled.p`
   font-size: 14px;
   color: ${theme.colors.corSecundaria};
   line-height: 1.4;
-  margin-bottom: 12px;
+  margin-bottom: 32px;
 
   @media (max-width: 1024px) {
     font-size: 13px;

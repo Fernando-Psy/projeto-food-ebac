@@ -91,8 +91,8 @@ const RestaurantDetail: React.FC = () => {
               <MenuInfo>
                 <MenuTitle>{item.nome}</MenuTitle>
                 <MenuDescription>{item.descricao}</MenuDescription>
-                <AddButton>Adicionar ao carrinho</AddButton>
               </MenuInfo>
+              <AddButton>Adicionar ao carrinho</AddButton>
             </MenuItem>
           ))}
         </MenuGrid>
