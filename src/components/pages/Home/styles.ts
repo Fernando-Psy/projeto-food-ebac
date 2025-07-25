@@ -24,10 +24,8 @@ export const FoodGrid = styled.div`
   max-width: 1024px;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   margin-top: 80px;
-  gap: 0 80px;
-  align-items: center;
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
