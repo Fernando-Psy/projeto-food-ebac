@@ -9,7 +9,6 @@ export const CardContainer = styled.div`
   height: 100%;
   border: 1px solid ${theme.colors.corPrincipal};
   display: flex;
-  margin: 0 40px 48px 40px;
   flex-direction: column;
   align-items: relative;
   background-color: ${theme.colors.corBranco};
@@ -95,10 +94,6 @@ export const FoodImage = styled.img`
   width: 100%;
   height: 217px;
   object-fit: cover;
-
-  @media (max-width: 1024px) {
-    height: 200px;
-  }
 
   @media (max-width: 768px) {
     height: 180px;

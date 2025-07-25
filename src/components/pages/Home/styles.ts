@@ -7,10 +7,6 @@ export const HomeContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 1024px) {
-    padding: 0 16px;
-  }
-
   @media (max-width: 768px) {
     padding: 0 14px;
   }
@@ -26,20 +22,10 @@ export const FoodGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 80px;
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 1200px;
-  }
-
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-top: 60px;
-    max-width: 800px;
-  }
+  gap: 48px 80px;
 
   @media (max-width: 768px) {
+    width: 90%;
     grid-template-columns: 1fr;
     gap: 20px;
     margin-top: 40px;
@@ -47,6 +33,7 @@ export const FoodGrid = styled.div`
   }
 
   @media (max-width: 480px) {
+    width: 90%;
     gap: 16px;
     margin-top: 32px;
     max-width: 100%;

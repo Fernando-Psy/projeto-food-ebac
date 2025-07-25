@@ -254,6 +254,8 @@ export const MenuDescription = styled.p`
 `;
 
 export const AddButton = styled.button`
+  display: inline-block;
+  margin-top: auto;
   width: 304px;
   height: 24px;
   padding: 6px;
@@ -267,12 +269,6 @@ export const AddButton = styled.button`
 
   &:hover {
     transform: translateY(-1px);
-  }
-
-  @media (max-width: 1024px) {
-    height: 34px;
-    font-size: 13px;
-    width: 100%;
   }
 
   @media (max-width: 480px) {
