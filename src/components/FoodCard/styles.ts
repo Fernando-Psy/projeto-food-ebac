@@ -50,6 +50,23 @@ export const ContainerTitle = styled.div`
   padding-top: 8px;
   list-style: none;
 
+  li {
+    font-size: 16px;
+    font-weight: bold;
+    color: ${theme.colors.corPrincipal};
+    margin: 8px;
+
+    @media (max-width: 768px) {
+      font-size: 15px;
+      margin: 6px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+      margin: 6px;
+    }
+  }
+
   @media (max-width: 480px) {
     padding: 6px;
   }
