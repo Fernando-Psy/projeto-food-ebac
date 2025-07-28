@@ -49,7 +49,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
             <img src={Estrela} alt="Avaliação" />
           </li>
         </ContainerTitle>
-        <DescriptionCard>{truncateText(description, 250)}</DescriptionCard>
+        <DescriptionCard>{truncateText(description, 250)}</DescriptionCard><br/>
         <Button as={Link} to={`/restaurant/${id}`}>
           Saiba mais
         </Button>
