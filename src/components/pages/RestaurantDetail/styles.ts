@@ -80,17 +80,17 @@ export const CategoryTag = styled.span`
 
   @media (max-width: 1024px) {
     font-size: 28px;
-    margin-bottom: 6px;
+    margin-bottom: 86px;
   }
 
   @media (max-width: 768px) {
     font-size: 24px;
-    margin-bottom: 4px;
+    margin-bottom: 84px;
   }
 
   @media (max-width: 480px) {
     font-size: 20px;
-    margin-bottom: 2px;
+    margin-bottom: 64px;
   }
 `;
 
@@ -118,11 +118,11 @@ export const ContentSection = styled.div`
   padding: 56px 40px 0;
 
   @media (max-width: 1024px) {
-    padding: 48px 32px 0;
+    align-itens: center;
   }
 
   @media (max-width: 768px) {
-    padding: 40px 20px 0;
+    align-itens: center;
   }
 
   @media (max-width: 480px) {
@@ -194,17 +194,22 @@ export const MenuImage = styled.img`
   align-items: center;
   background-size: cover;
   background-position: center;
+  max-width: 304px;
+  width: 100%;
 
   @media (max-width: 1024px) {
     height: 150px;
+    width: 100%;
   }
 
   @media (max-width: 768px) {
     height: 140px;
+    width: 100%;
   }
 
   @media (max-width: 480px) {
     height: 160px;
+    width: 100%;
   }
 `;
 
@@ -236,7 +241,7 @@ export const MenuDescription = styled.p`
   font-size: 14px;
   color: ${theme.colors.corSecundaria};
   line-height: 1.4;
-  margin-bottom: 12px;
+  margin-bottom: 32px;
 
   @media (max-width: 1024px) {
     font-size: 13px;
@@ -249,9 +254,14 @@ export const MenuDescription = styled.p`
 `;
 
 export const AddButton = styled.button`
+  display: inline-block;
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: auto;
   width: 304px;
   height: 24px;
-  padding: 6px;
   background-color: ${theme.colors.corSecundaria};
   color: ${theme.colors.corPrincipal};
   border: none;
@@ -260,18 +270,26 @@ export const AddButton = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
 
-  &:hover {
-    background-color: #f5d5b8;
-    transform: translateY(-1px);
-  }
-
-  @media (max-width: 1024px) {
-    height: 34px;
-    font-size: 13px;
-  }
-
   @media (max-width: 480px) {
     height: 32px;
     font-size: 12px;
+    width: 100%;
   }
+`;
+
+export const LoadingMessage = styled.div`
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+`;
+
+export const ErrorMessage = styled.div`
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: ${theme.colors.corPrincipal};
+  background-color: ${theme.colors.corSecundaria};
+  border-radius: 8px;
+  margin: 20px;
 `;

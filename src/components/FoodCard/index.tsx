@@ -10,7 +10,6 @@ import {
   DishButton,
   EmphasisButton,
   FoodImage,
-  TitleCard,
 } from './styles';
 
 interface FoodCardProps {
@@ -23,6 +22,11 @@ interface FoodCardProps {
   description: string;
 }
 
+const truncateText = (text: string, maxLength: 250): string => {
+  if (text.length <= maxLength) return text;
+  return `${text.substring(0, maxLength)}...`;
+};
+
 const FoodCard: React.FC<FoodCardProps> = ({
   id = '1',
   image,
@@ -33,22 +37,25 @@ const FoodCard: React.FC<FoodCardProps> = ({
   description,
 }) => {
   return (
-    <CardContainer>
-      <FoodImage src={image} alt={title} />
-      {emphasis && <EmphasisButton>{emphasis}</EmphasisButton>}
-      {dish && <DishButton>{dish}</DishButton>}
-      <ContainerTitle>
-        <TitleCard>{title}</TitleCard>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <TitleCard>{assessment}</TitleCard>
-          <AssessmentImg src={Estrela} alt="Estrela" />
-        </div>
-      </ContainerTitle>
-      <DescriptionCard>{description}</DescriptionCard>
-      <Button as={Link} to={`/restaurant/${id}`}>
-        Saiba mais
-      </Button>
-    </CardContainer>
+    <div style={{ alignContent: 'center', width: '100%' }}>
+      <CardContainer>
+        <FoodImage src={image} alt={title} />
+        {emphasis && <EmphasisButton>{emphasis}</EmphasisButton>}
+        {dish && <DishButton>{dish}</DishButton>}
+        <ContainerTitle>
+          <li>{title}</li>
+          <li>
+            <span>{assessment}</span>
+            <img src={Estrela} alt="Avaliação" />
+          </li>
+        </ContainerTitle>
+        <DescriptionCard>{truncateText(description, 250)}</DescriptionCard>
+        <br />
+        <Button as={Link} to={`/restaurant/${id}`}>
+          Saiba mais
+        </Button>
+      </CardContainer>
+    </div>
   );
 };
 

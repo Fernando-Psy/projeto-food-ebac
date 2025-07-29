@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import HeaderInternal from '../../HeaderInternal';
 import Footer from '../../Footer';
@@ -17,81 +17,82 @@ import {
   MenuTitle,
   MenuDescription,
   AddButton,
+  LoadingMessage,
+  ErrorMessage,
 } from './styles';
-
-import restaurantHero from '../../../assets/images/macarrao.png';
-import dish1 from '../../../assets/images/marguerita.png';
-
-const menuItems = [
-  {
-    id: 1,
-    image: dish1,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-  },
-  {
-    id: 2,
-    image: dish1,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-  },
-  {
-    id: 3,
-    image: dish1,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-  },
-  {
-    id: 4,
-    image: dish1,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-  },
-  {
-    id: 5,
-    image: dish1,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-  },
-  {
-    id: 6,
-    image: dish1,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-  },
-];
+import { apiService } from '../../../services/api';
+import { Restaurant } from '../../../types';
 
 const RestaurantDetail: React.FC = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
+  const [restaurant, setRestaurant] = useState<Restaurant | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchRestaurant = async () => {
+      if (!id) return;
+
+      try {
+        setLoading(true);
+        const data = await apiService.getRestaurantById(id);
+        setRestaurant(data);
+        if (!data) {
+          setError('Restaurante não encontrado');
+        }
+      } catch (error) {
+        setError('Erro ao carregar dados do restaurante');
+        console.error('Erro:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRestaurant();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <PageContainer>
+        <HeaderInternal />
+        <LoadingMessage>Carregando...</LoadingMessage>
+        <Footer />
+      </PageContainer>
+    );
+  }
+
+  if (error || !restaurant) {
+    return (
+      <PageContainer>
+        <HeaderInternal />
+        <ErrorMessage>{error || 'Restaurante não encontrado'}</ErrorMessage>
+        <Footer />
+      </PageContainer>
+    );
+  }
 
   return (
     <PageContainer>
       <HeaderInternal />
 
       <HeroSection>
-        <HeroImage src={restaurantHero} alt="La Dolce Vita Trattoria" />
+        <HeroImage src={restaurant.capa} alt={restaurant.titulo} />
         <HeroContent>
-          <CategoryTag>Italiana</CategoryTag>
-          <RestaurantTitle>La Dolce Vita Trattoria</RestaurantTitle>
+          <CategoryTag>{restaurant.tipo}</CategoryTag>
+          <RestaurantTitle>{restaurant.titulo}</RestaurantTitle>
         </HeroContent>
       </HeroSection>
 
       <ContentSection>
         <MenuGrid>
-          {menuItems.map((item) => (
+          {restaurant.cardapio.map((item) => (
             <MenuItem key={item.id}>
-              <MenuImage src={item.image} alt={item.title} />
+              <MenuImage src={item.foto} alt={item.nome} />
               <MenuInfo>
-                <MenuTitle>{item.title}</MenuTitle>
-                <MenuDescription>{item.description}</MenuDescription>
-                <AddButton>Adicionar ao carrinho</AddButton>
+                <MenuTitle>{item.nome}</MenuTitle>
+                <MenuDescription>{item.descricao}</MenuDescription>
               </MenuInfo>
+              <AddButton>Adicionar ao carrinho</AddButton>
             </MenuItem>
           ))}
         </MenuGrid>

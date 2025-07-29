@@ -34,13 +34,9 @@ export const HeaderContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 1024px;
+  width: 100%;
   max-width: 1200px;
   padding: 0 40px;
-
-  @media (max-width: 1024px) {
-    padding: 0 16px;
-  }
 
   @media (max-width: 768px) {
     padding: 0 12px;
@@ -63,20 +59,20 @@ export const LogoHeader = styled.img`
   height: 57.5px;
 
   @media (max-width: 1024px) {
-    width: 110px;
+    width: 100%;
   }
 
   @media (max-width: 768px) {
-    width: 100px;
+    width: 100%;
   }
 
   @media (max-width: 480px) {
-    width: 90px;
+    width: 100%;
     order: 2;
   }
 
   @media (max-width: 360px) {
-    width: 80px;
+    width: 100%;
   }
 `;
 

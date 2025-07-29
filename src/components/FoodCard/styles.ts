@@ -5,19 +5,14 @@ export const CardContainer = styled.div`
   position: relative;
   max-width: 472px;
   max-height: 398px;
-  margin: 0 40px 48px 40px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  width: 100%;
+  height: 100%;
   border: 1px solid ${theme.colors.corPrincipal};
+  display: flex;
+  flex-direction: column;
+  align-items: relative;
   background-color: ${theme.colors.corBranco};
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-  @media (max-width: 1024px) {
-    max-width: 400px;
-    margin: 0 20px 40px 20px;
-  }
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
     max-width: 100%;
@@ -48,39 +43,37 @@ export const CardContainer = styled.div`
 `;
 
 export const ContainerTitle = styled.div`
-  padding-top: 8px;
-  padding-bottom: 0;
+  min-width: 100%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  padding-top: 8px;
+  list-style: none;
+
+  li {
+    font-size: 16px;
+    font-weight: bold;
+    color: ${theme.colors.corPrincipal};
+    margin: 8px;
+
+    @media (max-width: 768px) {
+      font-size: 15px;
+      margin: 6px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+      margin: 6px;
+    }
+  }
 
   @media (max-width: 480px) {
     padding: 6px;
   }
 `;
 
-export const TitleCard = styled.h3`
-  font-size: 22px;
-  font-weight: bold;
-  margin-top: 8px;
-  margin-right: 8px;
-  margin-left: 7px;
-  color: ${theme.colors.corPrincipal};
-
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 18px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 16px;
-  }
-`;
-
 export const AssessmentImg = styled.img`
-  margin: 8px;
+  padding-top: 8px;
   width: 21px;
   height: 21px;
   flex-shrink: 0;
@@ -99,6 +92,7 @@ export const DescriptionCard = styled.p`
   margin: 8px;
   color: ${theme.colors.corPrincipal};
   line-height: 1.5;
+  padding-bottom: 64px;
 
   @media (max-height: 768px) {
     font-size: 13px;
@@ -117,10 +111,6 @@ export const FoodImage = styled.img`
   width: 100%;
   height: 217px;
   object-fit: cover;
-
-  @media (max-width: 1024px) {
-    height: 200px;
-  }
 
   @media (max-width: 768px) {
     height: 180px;
@@ -161,7 +151,7 @@ export const DishButton = styled.div`
 export const EmphasisButton = styled.div`
   position: absolute;
   top: 16px;
-  right: 112px;
+  right: 96px;
   left: auto;
   background-color: ${theme.colors.corPrincipal};
   color: ${theme.colors.corSecundaria};
@@ -192,10 +182,11 @@ export const Button = styled.button`
   color: ${theme.colors.corSecundaria};
   text-decoration: none;
   padding: 6px 12px;
+  position: absolute;
   text-align: center;
   border: none;
-  margin: 8px;
-  margin-bottom: 16px;
+  margin: 24px 8px 0 8px;
+  bottom: 8px;
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
