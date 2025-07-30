@@ -19,15 +19,26 @@ import {
   AddButton,
   LoadingMessage,
   ErrorMessage,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalImage,
+  ModalPrice,
+  ModalButton,
+  ModalCloseButton,
+  ModalDescription,
+  ModalTitle,
 } from './styles';
 import { apiService } from '../../../services/api';
-import { Restaurant } from '../../../types';
+import { Restaurant, MenuItem as MenuItemType } from '../../../types';
 
 const RestaurantDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [restaurant, setRestaurant] = useState<Restaurant | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<MenuItemType | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchRestaurant = async () => {
@@ -50,6 +61,15 @@ const RestaurantDetail: React.FC = () => {
 
     fetchRestaurant();
   }, [id]);
+
+  const openModal = (item: MenuItemType) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   if (loading) {
     return (
@@ -92,11 +112,31 @@ const RestaurantDetail: React.FC = () => {
                 <MenuTitle>{item.nome}</MenuTitle>
                 <MenuDescription>{item.descricao}</MenuDescription>
               </MenuInfo>
-              <AddButton>Adicionar ao carrinho</AddButton>
+              <AddButton onClick={() => openModal(item)}>
+                Adicionar ao carrinho
+              </AddButton>
             </MenuItem>
           ))}
         </MenuGrid>
       </ContentSection>
+
+      {isModalOpen && selectedItem && (
+        <Modal>
+          <ModalContent>
+            <ModalCloseButton onClick={closeModal}>×</ModalCloseButton>
+            <ModalHeader>
+              <ModalTitle>{selectedItem.nome}</ModalTitle>
+              <ModalDescription>{selectedItem.descricao}</ModalDescription>
+              <ModalDescription>Serve: {selectedItem.porcao}</ModalDescription>
+            </ModalHeader>
+            <ModalImage src={selectedItem.foto} alt={selectedItem.nome} />
+            <ModalPrice>R$ {selectedItem.preco.toFixed(2)}</ModalPrice>
+            <ModalButton>
+              Adicionar ao carrinho - R$ {selectedItem.preco.toFixed(2)}
+            </ModalButton>
+          </ModalContent>
+        </Modal>
+      )}
 
       <Footer />
     </PageContainer>

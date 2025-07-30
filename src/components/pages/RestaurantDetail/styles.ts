@@ -278,10 +278,12 @@ export const AddButton = styled.button`
 `;
 
 export const LoadingMessage = styled.div`
-  text-align: center;
-  padding: 40px;
-  font-size: 18px;
-  color: #666;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
 `;
 
 export const ErrorMessage = styled.div`
@@ -292,4 +294,91 @@ export const ErrorMessage = styled.div`
   background-color: ${theme.colors.corSecundaria};
   border-radius: 8px;
   margin: 20px;
+`;
+
+export const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+export const ModalContent = styled.div`
+  background-color: ${theme.colors.corPrincipal};
+  padding: 32px;
+  border-radius: 8px;
+  max-width: 1024px;
+  width: 80%;
+  color: ${theme.colors.corSecundaria};
+  position: relative;
+`;
+
+export const ModalCloseButton = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: ${theme.colors.corSecundaria};
+  cursor: pointer;
+`;
+
+export const ModalHeader = styled.header`
+  text-align: center;
+  margin-bottom: 24px;
+`;
+
+export const ModalTitle = styled.h2`
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: ${theme.colors.corSecundaria};
+`;
+
+export const ModalDescription = styled.p`
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+`;
+
+export const ModalImage = styled.img`
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 24px;
+`;
+
+export const ModalPrice = styled.p`
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 24px;
+`;
+
+export const ModalButton = styled.button`
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: ${theme.colors.corSecundaria};
+  color: ${theme.colors.corPrincipal};
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: ${theme.colors.corPrincipal};
+    color: ${theme.colors.corSecundaria};
+    border: 1px solid ${theme.colors.corSecundaria};
+  }
 `;
