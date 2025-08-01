@@ -23,11 +23,11 @@ import {
   ModalContent,
   ModalHeader,
   ModalImage,
-  ModalPrice,
   ModalButton,
   ModalCloseButton,
   ModalDescription,
   ModalTitle,
+  ModalUl,
 } from './styles';
 import { apiService } from '../../../services/api';
 import { Restaurant, MenuItem as MenuItemType } from '../../../types';
@@ -125,15 +125,18 @@ const RestaurantDetail: React.FC = () => {
           <ModalContent>
             <ModalCloseButton onClick={closeModal}>×</ModalCloseButton>
             <ModalHeader>
-              <ModalTitle>{selectedItem.nome}</ModalTitle>
-              <ModalDescription>{selectedItem.descricao}</ModalDescription>
-              <ModalDescription>Serve: {selectedItem.porcao}</ModalDescription>
+              <ModalImage src={selectedItem.foto} alt={selectedItem.nome} />
+              <ModalUl>
+                <ModalTitle>{selectedItem.nome}</ModalTitle>
+                <ModalDescription>{selectedItem.descricao}</ModalDescription>
+                <ModalDescription>
+                  Serve: {selectedItem.porcao}
+                </ModalDescription>
+                <ModalButton>
+                  Adicionar ao carrinho - R$ {selectedItem.preco.toFixed(2)}
+                </ModalButton>
+              </ModalUl>
             </ModalHeader>
-            <ModalImage src={selectedItem.foto} alt={selectedItem.nome} />
-            <ModalPrice>R$ {selectedItem.preco.toFixed(2)}</ModalPrice>
-            <ModalButton>
-              Adicionar ao carrinho - R$ {selectedItem.preco.toFixed(2)}
-            </ModalButton>
           </ModalContent>
         </Modal>
       )}

@@ -312,9 +312,10 @@ export const Modal = styled.div`
 export const ModalContent = styled.div`
   background-color: ${theme.colors.corPrincipal};
   padding: 32px;
-  border-radius: 8px;
   max-width: 1024px;
-  width: 80%;
+  width: 100%;
+  max-height: 344px;
+  height: 100%;
   color: ${theme.colors.corSecundaria};
   position: relative;
 `;
@@ -331,7 +332,7 @@ export const ModalCloseButton = styled.button`
 `;
 
 export const ModalHeader = styled.header`
-  text-align: center;
+  display: flex;
   margin-bottom: 24px;
 `;
 
@@ -339,40 +340,48 @@ export const ModalTitle = styled.h2`
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 16px;
+  margin: 0 0 16px 0;
   color: ${theme.colors.corSecundaria};
 `;
 
 export const ModalDescription = styled.p`
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.5;
   margin-bottom: 8px;
+  margin: 0 0 16px 0;
 `;
 
 export const ModalImage = styled.img`
+  max-width: 280px
   width: 100%;
-  max-height: 300px;
+  max-height: 280px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 `;
 
-export const ModalPrice = styled.p`
-  font-size: 24px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 24px;
+export const ModalUl = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 656px;
+  margin-left: 24px;
+  color: ${theme.colors.corSecundaria};
 `;
 
 export const ModalButton = styled.button`
   display: block;
+  max-width: 280px;
   width: 100%;
   padding: 12px;
+  margin: 0 0 16px 0;
   background-color: ${theme.colors.corSecundaria};
   color: ${theme.colors.corPrincipal};
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
