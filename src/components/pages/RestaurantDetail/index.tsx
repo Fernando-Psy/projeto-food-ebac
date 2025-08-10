@@ -31,6 +31,7 @@ import {
 } from './styles';
 import { apiService } from '../../../services/api';
 import { Restaurant, MenuItem as MenuItemType } from '../../../types';
+import { useCart } from '../../../contexts/CartContext';
 
 const RestaurantDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -39,6 +40,7 @@ const RestaurantDetail: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<MenuItemType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchRestaurant = async () => {
@@ -132,7 +134,17 @@ const RestaurantDetail: React.FC = () => {
                 <ModalDescription>
                   Serve: {selectedItem.porcao}
                 </ModalDescription>
-                <ModalButton>
+                <ModalButton
+                  onClick={() => {
+                    addToCart({
+                      id: String(selectedItem.id),
+                      nome: selectedItem.nome,
+                      foto: selectedItem.foto,
+                      preco: selectedItem.preco,
+                    });
+                    closeModal();
+                  }}
+                >
                   Adicionar ao carrinho - R$ {selectedItem.preco.toFixed(2)}
                 </ModalButton>
               </ModalUl>
