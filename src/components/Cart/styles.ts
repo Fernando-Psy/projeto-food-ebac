@@ -6,9 +6,6 @@ export const CartContainer = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
   z-index: 1000;
   top: 0;
   left: 0;
@@ -25,7 +22,9 @@ export const Overlay = styled.div`
 `;
 
 export const CartAside = styled.aside`
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
   max-width: 360px;
   width: 100%;
   height: 100%;
