@@ -1,4 +1,3 @@
-// src/components/Cart/styles.ts
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 

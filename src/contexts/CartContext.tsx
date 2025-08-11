@@ -9,18 +9,6 @@ type CartItem = {
   quantidade: number;
 };
 
-type DeliveryInfo = {
-  name: string;
-  address: string;
-  number: string;
-  complement: string;
-  neighborhood: string;
-  city: string;
-  state: string;
-  cep: string;
-  phone: string;
-};
-
 type CheckoutStep = 'cart' | 'delivery' | 'payment' | 'confirmation';
 
 type CartContextType = {

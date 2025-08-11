@@ -1,5 +1,3 @@
-// src/types/checkout.ts
-
 export interface DeliveryFormData {
   name: string;
   address: string;
@@ -20,7 +18,7 @@ export interface PaymentFormData {
 export interface OrderData {
   id: string;
   delivery: DeliveryFormData;
-  payment: Omit<PaymentFormData, 'cvv'>; // CVV is not stored for security reasons
+  payment: Omit<PaymentFormData, 'cvv'>;
   total: number;
   items: CartItem[];
   createdAt: Date;
