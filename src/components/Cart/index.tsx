@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-
-import { useCart } from '../../contexts/CartContext';
-import { CheckoutFlow } from '../Checkout/CheckoutFlow';
 import {
   CartAside,
   CartContainer,
   Overlay,
   CartItem,
   CartSummary,
-} from '../Cart/styles';
+} from './styles';
+import { useCart } from '../../contexts/CartContext';
 
 const Cart = () => {
   const {
@@ -22,8 +19,6 @@ const Cart = () => {
     cartQuantity,
   } = useCart();
 
-  const [showCheckout, setShowCheckout] = useState(false);
-
   if (!isCartOpen) return null;
 
   const handleRemoveAll = (itemId: string) => {
@@ -31,30 +26,6 @@ const Cart = () => {
       removeAllFromCart(itemId);
     }
   };
-
-  const handleFinalizarCompra = () => {
-    if (cartItems.length === 0) {
-      alert('Seu carrinho está vazio!');
-      return;
-    }
-    setShowCheckout(true);
-  };
-
-  const handleCloseCheckout = () => {
-    setShowCheckout(false);
-    toggleCart(); // Fecha o carrinho também
-  };
-
-  // Se o checkout estiver aberto, renderizar apenas o fluxo de checkout
-  if (showCheckout) {
-    return (
-      <CheckoutFlow
-        cartTotal={cartTotal}
-        cartItems={cartItems}
-        onClose={handleCloseCheckout}
-      />
-    );
-  }
 
   return (
     <CartContainer>
@@ -93,9 +64,7 @@ const Cart = () => {
         {cartItems.length > 0 && (
           <CartSummary>
             <p>Total: R$ {cartTotal.toFixed(2)}</p>
-            <button onClick={handleFinalizarCompra}>
-              Finalizar Compra
-            </button>
+            <button>Finalizar Compra</button>
           </CartSummary>
         )}
       </CartAside>

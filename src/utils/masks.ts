@@ -25,21 +25,15 @@ export const applyPhoneMask = (value: string): string => {
 };
 
 export const applyMonthMask = (value: string): string => {
-  return value
-    .replace(/\D/g, '')
-    .substr(0, 2);
+  return value.replace(/\D/g, '').substr(0, 2);
 };
 
 export const applyYearMask = (value: string): string => {
-  return value
-    .replace(/\D/g, '')
-    .substr(0, 2);
+  return value.replace(/\D/g, '').substr(0, 2);
 };
 
 export const applyCvvMask = (value: string): string => {
-  return value
-    .replace(/\D/g, '')
-    .substr(0, 3);
+  return value.replace(/\D/g, '').substr(0, 3);
 };
 
 export const removeMask = (value: string): string => {

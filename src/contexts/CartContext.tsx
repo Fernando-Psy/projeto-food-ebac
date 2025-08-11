@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
+import { DeliveryInfo } from '../types';
 
 type CartItem = {
   id: string;
@@ -7,6 +8,20 @@ type CartItem = {
   preco: number;
   quantidade: number;
 };
+
+type DeliveryInfo = {
+  name: string;
+  address: string;
+  number: string;
+  complement: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+  cep: string;
+  phone: string;
+};
+
+type CheckoutStep = 'cart' | 'delivery' | 'payment' | 'confirmation';
 
 type CartContextType = {
   cartItems: CartItem[];
@@ -17,6 +32,14 @@ type CartContextType = {
   toggleCart: () => void;
   cartTotal: number;
   cartQuantity: number;
+  checkoutStep: CheckoutStep;
+  goToNextStep: () => void;
+  goToPrevStep: () => void;
+  resetCheckout: () => void;
+  deliveryInfo: DeliveryInfo | null;
+  setDeliveryInfo: (info: DeliveryInfo) => void;
+  paymentMethod: string | null;
+  setPaymentMethod: (method: string) => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -24,6 +47,9 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [checkoutStep, setCheckoutStep] = useState<CheckoutStep>('cart');
+  const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInfo | null>(null);
+  const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
 
   const addToCart = (item: Omit<CartItem, 'quantidade'>) => {
     setCartItems((prevItems) => {
@@ -56,6 +82,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       return prevItems.filter((item) => item.id !== id);
     });
   };
+
   const removeAllFromCart = (id: string) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
@@ -74,6 +101,25 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     0,
   );
 
+  const goToNextStep = () => {
+    if (checkoutStep === 'cart') setCheckoutStep('delivery');
+    else if (checkoutStep === 'delivery') setCheckoutStep('payment');
+    else if (checkoutStep === 'payment') setCheckoutStep('confirmation');
+  };
+
+  const goToPrevStep = () => {
+    if (checkoutStep === 'delivery') setCheckoutStep('cart');
+    else if (checkoutStep === 'payment') setCheckoutStep('delivery');
+    else if (checkoutStep === 'confirmation') setCheckoutStep('payment');
+  };
+
+  const resetCheckout = () => {
+    setCheckoutStep('cart');
+    setDeliveryInfo(null);
+    setPaymentMethod(null);
+    setCartItems([]);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -85,6 +131,14 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         toggleCart,
         cartTotal,
         cartQuantity,
+        checkoutStep,
+        goToNextStep,
+        goToPrevStep,
+        resetCheckout,
+        deliveryInfo,
+        setDeliveryInfo,
+        paymentMethod,
+        setPaymentMethod,
       }}
     >
       {children}

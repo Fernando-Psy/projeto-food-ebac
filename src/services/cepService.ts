@@ -11,7 +11,9 @@ export interface CepResponse {
   erro?: boolean;
 }
 
-export const fetchAddressByCep = async (cep: string): Promise<CepResponse | null> => {
+export const fetchAddressByCep = async (
+  cep: string,
+): Promise<CepResponse | null> => {
   const cleanCep = cep.replace(/\D/g, '');
 
   if (cleanCep.length !== 8) {
@@ -20,7 +22,7 @@ export const fetchAddressByCep = async (cep: string): Promise<CepResponse | null
 
   try {
     const response = await axios.get<CepResponse>(
-      `https://viacep.com.br/ws/${cleanCep}/json/`
+      `https://viacep.com.br/ws/${cleanCep}/json/`,
     );
 
     if (response.data && !response.data.erro) {
