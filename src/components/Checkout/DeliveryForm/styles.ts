@@ -1,5 +1,7 @@
+// src/components/Checkout/shared/styles.ts
+// Estilos compartilhados entre os componentes de checkout
 import styled from 'styled-components';
-import { theme } from '../../styles/theme';
+import { theme } from '../../../styles/theme';
 
 export const FormContainer = styled.div`
   position: fixed;
@@ -99,37 +101,11 @@ export const ButtonSecondary = styled.button`
   }
 `;
 
-// Estilos para o componente de confirmação
-export const ConfirmationContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: ${theme.colors.corPrincipal};
+export const FlexContainer = styled.div<{ gap?: string }>`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 1000;
+  gap: ${props => props.gap || '10px'};
 `;
 
-export const ConfirmationContent = styled.div`
-  max-width: 400px;
-  text-align: center;
-
-  h2 {
-    color: ${theme.colors.corSecundaria};
-    margin-bottom: 20px;
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  p {
-    color: ${theme.colors.corSecundaria};
-    font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 15px;
-    text-align: left;
-  }
+export const FlexItem = styled.div<{ flex?: number }>`
+  flex: ${props => props.flex || 1};
 `;
