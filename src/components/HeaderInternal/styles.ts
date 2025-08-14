@@ -25,8 +25,13 @@ export const HeaderContainer = styled.header`
   }
 
   @media (max-width: 480px) {
-    padding-top: 16px;
-    padding-bottom: 16px;
+    height: 120px;
+    padding: 16px 8px;
+  }
+
+  @media (max-width: 360px) {
+    height: 100px;
+    padding: 12px 6px;
   }
 `;
 
@@ -37,6 +42,10 @@ export const HeaderContent = styled.div`
   width: 100%;
   max-width: 1200px;
   padding: 0 40px;
+
+  @media (max-width: 1024px) {
+    padding: 0 24px;
+  }
 
   @media (max-width: 768px) {
     padding: 0 12px;
@@ -50,7 +59,8 @@ export const HeaderContent = styled.div`
   }
 
   @media (max-width: 360px) {
-    gap: 6px;
+    gap: 8px;
+    padding: 0 4px;
   }
 `;
 
@@ -59,20 +69,23 @@ export const LogoHeader = styled.img`
   height: 57.5px;
 
   @media (max-width: 1024px) {
-    width: 100%;
+    width: 110px;
+    height: auto;
   }
 
   @media (max-width: 768px) {
-    width: 100%;
+    width: 100px;
+    height: auto;
   }
 
   @media (max-width: 480px) {
-    width: 100%;
+    width: 90px;
+    height: auto;
     order: 2;
   }
 
   @media (max-width: 360px) {
-    width: 100%;
+    width: 80px;
   }
 `;
 
@@ -105,6 +118,7 @@ export const NavLink = styled.a`
 
   @media (max-width: 360px) {
     font-size: 13px;
+    padding: 3px 0;
   }
 
   &:last-child {

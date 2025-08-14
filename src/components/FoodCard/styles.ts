@@ -14,14 +14,26 @@ export const CardContainer = styled.div`
   background-color: ${theme.colors.corBranco};
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+  @media (max-width: 1024px) {
+    max-width: 420px;
+    max-height: 380px;
+  }
+
   @media (max-width: 768px) {
     max-width: 100%;
     margin: 0 16px 32px 16px;
     max-height: none;
+    min-height: 380px;
   }
 
   @media (max-width: 480px) {
     margin: 0 8px 24px 8px;
+    min-height: 350px;
+  }
+
+  @media (max-width: 360px) {
+    margin: 0 4px 20px 4px;
+    min-height: 320px;
   }
 
   span {
@@ -37,7 +49,11 @@ export const CardContainer = styled.div`
 
     @media (max-width: 480px) {
       font-size: 14px;
-      margin: 6px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 13px;
+      margin: 4px;
     }
   }
 `;
@@ -49,6 +65,10 @@ export const ContainerTitle = styled.div`
   justify-content: space-between;
   padding-top: 8px;
   list-style: none;
+
+  @media (max-width: 480px) {
+    padding: 6px;
+  }
 
   li {
     font-size: 16px;
@@ -63,12 +83,12 @@ export const ContainerTitle = styled.div`
 
     @media (max-width: 480px) {
       font-size: 14px;
-      margin: 6px;
     }
-  }
 
-  @media (max-width: 480px) {
-    padding: 6px;
+    @media (max-width: 360px) {
+      font-size: 13px;
+      margin: 4px;
+    }
   }
 `;
 
@@ -78,10 +98,20 @@ export const AssessmentImg = styled.img`
   height: 21px;
   flex-shrink: 0;
 
+  @media (max-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
+
   @media (max-width: 480px) {
     width: 18px;
     height: 18px;
     margin-left: 4px;
+  }
+
+  @media (max-width: 360px) {
+    width: 16px;
+    height: 16px;
   }
 `;
 
@@ -94,16 +124,22 @@ export const DescriptionCard = styled.p`
   line-height: 1.5;
   padding-bottom: 64px;
 
-  @media (max-height: 768px) {
+  @media (max-width: 768px) {
     font-size: 13px;
     margin: 6px;
-    -webkit-line-clamp: 2;
+    padding-bottom: 60px;
   }
 
   @media (max-width: 480px) {
     font-size: 12px;
-    margin: 6px;
     line-height: 1.4;
+    padding-bottom: 56px;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 11px;
+    margin: 4px;
+    padding-bottom: 52px;
   }
 `;
 
@@ -112,12 +148,20 @@ export const FoodImage = styled.img`
   height: 217px;
   object-fit: cover;
 
+  @media (max-width: 1024px) {
+    height: 200px;
+  }
+
   @media (max-width: 768px) {
     height: 180px;
   }
 
   @media (max-width: 480px) {
     height: 160px;
+  }
+
+  @media (max-width: 360px) {
+    height: 140px;
   }
 `;
 
@@ -146,6 +190,13 @@ export const DishButton = styled.div`
     padding: 4px 6px;
     font-size: 12px;
   }
+
+  @media (max-width: 360px) {
+    top: 6px;
+    right: 3px;
+    padding: 3px 5px;
+    font-size: 11px;
+  }
 `;
 
 export const EmphasisButton = styled.div`
@@ -172,6 +223,13 @@ export const EmphasisButton = styled.div`
     right: 70px;
     padding: 4px 6px;
     font-size: 12px;
+  }
+
+  @media (max-width: 360px) {
+    top: 6px;
+    right: 60px;
+    padding: 3px 5px;
+    font-size: 11px;
   }
 `;
 
@@ -203,7 +261,14 @@ export const Button = styled.button`
     margin: 4px;
     margin-bottom: 8px;
     font-size: 12px;
-    height: 28px;
-    padding: 4px 8px;
+    height: 36px;
+    padding: 8px 12px;
+    width: calc(100% - 8px);
+  }
+
+  @media (max-width: 360px) {
+    height: 34px;
+    font-size: 11px;
+    padding: 6px 10px;
   }
 `;

@@ -1,6 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import InputMask from 'react-input-mask';
 import { FormGroup, ErrorText, ButtonGroup, Button } from './styles';
 
 const PaymentSchema = Yup.object().shape({
@@ -37,6 +36,27 @@ interface PaymentFormProps {
   onBack: () => void;
 }
 
+// Funções de máscara
+const applyCardMask = (value: string): string => {
+  return value
+    .replace(/\D/g, '')
+    .replace(/(\d{4})(\d)/, '$1 $2')
+    .replace(/(\d{4} \d{4})(\d)/, '$1 $2')
+    .replace(/(\d{4} \d{4} \d{4})(\d)/, '$1 $2')
+    .substr(0, 19);
+};
+
+const applyExpiryMask = (value: string): string => {
+  return value
+    .replace(/\D/g, '')
+    .replace(/(\d{2})(\d)/, '$1/$2')
+    .substr(0, 5);
+};
+
+const applyCvvMask = (value: string): string => {
+  return value.replace(/\D/g, '').substr(0, 3);
+};
+
 export const PaymentForm = ({ onSubmit, onBack }: PaymentFormProps) => {
   return (
     <Formik
@@ -50,7 +70,7 @@ export const PaymentForm = ({ onSubmit, onBack }: PaymentFormProps) => {
       validationSchema={PaymentSchema}
       onSubmit={onSubmit}
     >
-      {({ values, isSubmitting, isValid, dirty }) => (
+      {({ values, setFieldValue, isSubmitting, isValid, dirty }) => (
         <Form>
           <FormGroup>
             <label>
@@ -85,16 +105,27 @@ export const PaymentForm = ({ onSubmit, onBack }: PaymentFormProps) => {
               <FormGroup>
                 <label htmlFor="cardNumber">Número do Cartão</label>
                 <Field name="cardNumber">
-                  {({ field }: { field: any }) => (
-                    <InputMask
+                  {({
+                    field,
+                  }: {
+                    field: {
+                      name: string;
+                      value: string;
+                      onChange: (
+                        e: React.ChangeEvent<HTMLInputElement>,
+                      ) => void;
+                      onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+                    };
+                  }) => (
+                    <input
                       {...field}
-                      mask="9999 9999 9999 9999"
-                      maskChar={null}
-                    >
-                      {(inputProps: any) => (
-                        <input {...inputProps} type="text" />
-                      )}
-                    </InputMask>
+                      type="text"
+                      value={applyCardMask(field.value)}
+                      onChange={(e) => {
+                        const maskedValue = applyCardMask(e.target.value);
+                        setFieldValue('cardNumber', maskedValue);
+                      }}
+                    />
                   )}
                 </Field>
                 <ErrorMessage name="cardNumber" component={ErrorText} />
@@ -104,12 +135,27 @@ export const PaymentForm = ({ onSubmit, onBack }: PaymentFormProps) => {
                 <FormGroup style={{ flex: 1 }}>
                   <label htmlFor="cardExpiry">Validade</label>
                   <Field name="cardExpiry">
-                    {({ field }: { field: any }) => (
-                      <InputMask {...field} mask="99/99" maskChar={null}>
-                        {(inputProps: any) => (
-                          <input {...inputProps} type="text" />
-                        )}
-                      </InputMask>
+                    {({
+                      field,
+                    }: {
+                      field: {
+                        name: string;
+                        value: string;
+                        onChange: (
+                          e: React.ChangeEvent<HTMLInputElement>,
+                        ) => void;
+                        onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+                      };
+                    }) => (
+                      <input
+                        {...field}
+                        type="text"
+                        value={applyExpiryMask(field.value)}
+                        onChange={(e) => {
+                          const maskedValue = applyExpiryMask(e.target.value);
+                          setFieldValue('cardExpiry', maskedValue);
+                        }}
+                      />
                     )}
                   </Field>
                   <ErrorMessage name="cardExpiry" component={ErrorText} />
@@ -118,12 +164,27 @@ export const PaymentForm = ({ onSubmit, onBack }: PaymentFormProps) => {
                 <FormGroup style={{ flex: 1 }}>
                   <label htmlFor="cardCvv">CVV</label>
                   <Field name="cardCvv">
-                    {({ field }: { field: any }) => (
-                      <InputMask {...field} mask="999" maskChar={null}>
-                        {(inputProps: any) => (
-                          <input {...inputProps} type="text" />
-                        )}
-                      </InputMask>
+                    {({
+                      field,
+                    }: {
+                      field: {
+                        name: string;
+                        value: string;
+                        onChange: (
+                          e: React.ChangeEvent<HTMLInputElement>,
+                        ) => void;
+                        onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+                      };
+                    }) => (
+                      <input
+                        {...field}
+                        type="text"
+                        value={applyCvvMask(field.value)}
+                        onChange={(e) => {
+                          const maskedValue = applyCvvMask(e.target.value);
+                          setFieldValue('cardCvv', maskedValue);
+                        }}
+                      />
                     )}
                   </Field>
                   <ErrorMessage name="cardCvv" component={ErrorText} />

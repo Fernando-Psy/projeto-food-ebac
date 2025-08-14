@@ -76,6 +76,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const toggleCart = () => {
+    // Se estiver no processo de checkout, reseta para o carrinho
+    if (checkoutStep !== 'cart') {
+      setCheckoutStep('cart');
+    }
     setIsCartOpen((prev) => !prev);
   };
 
@@ -90,15 +94,25 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   );
 
   const goToNextStep = () => {
-    if (checkoutStep === 'cart') setCheckoutStep('delivery');
-    else if (checkoutStep === 'delivery') setCheckoutStep('payment');
-    else if (checkoutStep === 'payment') setCheckoutStep('confirmation');
+    if (checkoutStep === 'cart') {
+      setCheckoutStep('delivery');
+      // Mantém o carrinho aberto durante o checkout
+      setIsCartOpen(true);
+    } else if (checkoutStep === 'delivery') {
+      setCheckoutStep('payment');
+    } else if (checkoutStep === 'payment') {
+      setCheckoutStep('confirmation');
+    }
   };
 
   const goToPrevStep = () => {
-    if (checkoutStep === 'delivery') setCheckoutStep('cart');
-    else if (checkoutStep === 'payment') setCheckoutStep('delivery');
-    else if (checkoutStep === 'confirmation') setCheckoutStep('payment');
+    if (checkoutStep === 'delivery') {
+      setCheckoutStep('cart');
+    } else if (checkoutStep === 'payment') {
+      setCheckoutStep('delivery');
+    } else if (checkoutStep === 'confirmation') {
+      setCheckoutStep('payment');
+    }
   };
 
   const resetCheckout = () => {
@@ -106,6 +120,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setDeliveryInfo(null);
     setPaymentMethod(null);
     setCartItems([]);
+    setIsCartOpen(false); // Fecha o carrinho após finalizar
   };
 
   return (

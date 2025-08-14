@@ -4,6 +4,16 @@ export const StepsContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
 `;
 
 export const Step = styled.div<{ active: boolean }>`
@@ -12,20 +22,66 @@ export const Step = styled.div<{ active: boolean }>`
   border-bottom: 3px solid ${({ active }) => (active ? '#FF9F1C' : '#ddd')};
   color: ${({ active }) => (active ? '#FF9F1C' : '#777')};
   font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
+
+  @media (max-width: 768px) {
+    padding: 8px 16px;
+    margin: 0 8px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    margin: 5px 0;
+    text-align: center;
+    border-bottom: none;
+    border-left: 3px solid ${({ active }) => (active ? '#FF9F1C' : '#ddd')};
+  }
+
+  @media (max-width: 360px) {
+    padding: 8px;
+    font-size: 13px;
+  }
 `;
 
 export const ConfirmationContainer = styled.div`
   text-align: center;
   padding: 20px;
 
+  @media (max-width: 480px) {
+    padding: 16px;
+  }
+
+  @media (max-width: 360px) {
+    padding: 12px;
+  }
+
   h2 {
     color: #ff9f1c;
     margin-bottom: 20px;
+
+    @media (max-width: 480px) {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
   }
 
   p {
     margin-bottom: 15px;
     font-size: 16px;
+
+    @media (max-width: 480px) {
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 14px;
+    }
   }
 
   .order-number {
@@ -33,6 +89,16 @@ export const ConfirmationContainer = styled.div`
     font-weight: bold;
     color: #333;
     margin: 20px 0;
+
+    @media (max-width: 480px) {
+      font-size: 22px;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 20px;
+      margin: 14px 0;
+    }
   }
 `;
 
@@ -46,6 +112,19 @@ export const Button = styled.button<{ primary?: boolean }>`
   font-weight: bold;
   transition: all 0.3s;
   margin-top: 20px;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: 16px 24px;
+    font-size: 16px;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 360px) {
+    padding: 14px 20px;
+    font-size: 15px;
+    margin-top: 14px;
+  }
 
   &:hover {
     background-color: ${({ primary }) => (primary ? '#FFBF69' : '#e0e0e0')};

@@ -30,6 +30,11 @@ export const HeroSection = styled.div`
     height: 160px;
     margin-top: -15px;
   }
+
+  @media (max-width: 360px) {
+    height: 140px;
+    margin-top: -12px;
+  }
 `;
 
 export const HeroImage = styled.img`
@@ -40,6 +45,10 @@ export const HeroImage = styled.img`
 
   @media (max-width: 480px) {
     padding-top: 16px;
+  }
+
+  @media (max-width: 360px) {
+    padding-top: 12px;
   }
 `;
 
@@ -69,6 +78,11 @@ export const HeroContent = styled.div`
     padding: 0 16px;
     text-align: center;
   }
+
+  @media (max-width: 360px) {
+    bottom: 12px;
+    padding: 0 12px;
+  }
 `;
 
 export const CategoryTag = styled.span`
@@ -80,17 +94,22 @@ export const CategoryTag = styled.span`
 
   @media (max-width: 1024px) {
     font-size: 28px;
-    margin-bottom: 86px;
+    margin-bottom: 120px;
   }
 
   @media (max-width: 768px) {
     font-size: 24px;
-    margin-bottom: 84px;
+    margin-bottom: 100px;
   }
 
   @media (max-width: 480px) {
     font-size: 20px;
-    margin-bottom: 64px;
+    margin-bottom: 80px;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 18px;
+    margin-bottom: 60px;
   }
 `;
 
@@ -110,6 +129,10 @@ export const RestaurantTitle = styled.h1`
   @media (max-width: 480px) {
     font-size: 20px;
   }
+
+  @media (max-width: 360px) {
+    font-size: 18px;
+  }
 `;
 
 export const ContentSection = styled.div`
@@ -118,15 +141,19 @@ export const ContentSection = styled.div`
   padding: 56px 40px 0;
 
   @media (max-width: 1024px) {
-    align-itens: center;
+    padding: 48px 32px 0;
   }
 
   @media (max-width: 768px) {
-    align-itens: center;
+    padding: 40px 24px 0;
   }
 
   @media (max-width: 480px) {
     padding: 32px 16px 0;
+  }
+
+  @media (max-width: 360px) {
+    padding: 24px 12px 0;
   }
 `;
 
@@ -136,8 +163,13 @@ export const MenuGrid = styled.div`
   padding-bottom: 40px;
   gap: 32px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
     padding-bottom: 32px;
   }
@@ -145,13 +177,23 @@ export const MenuGrid = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    padding-bottom: 24px;
+    padding-bottom: 28px;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    justify-items: center;
   }
 
   @media (max-width: 480px) {
-    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-bottom: 24px;
+  }
+
+  @media (max-width: 360px) {
     gap: 16px;
-    padding-bottom: 16px;
+    padding-bottom: 20px;
   }
 `;
 
@@ -173,16 +215,29 @@ export const MenuItem = styled.div`
 
   @media (max-width: 1024px) {
     min-height: 320px;
+    max-width: 300px;
   }
 
   @media (max-width: 768px) {
     min-height: 300px;
+    max-width: 280px;
+  }
+
+  @media (max-width: 600px) {
+    max-width: 350px;
+    min-width: 280px;
   }
 
   @media (max-width: 480px) {
     min-width: auto;
     max-width: 100%;
     border: 6px solid ${theme.colors.corPrincipal};
+    min-height: 280px;
+  }
+
+  @media (max-width: 360px) {
+    border: 4px solid ${theme.colors.corPrincipal};
+    min-height: 260px;
   }
 `;
 
@@ -199,17 +254,19 @@ export const MenuImage = styled.img`
 
   @media (max-width: 1024px) {
     height: 150px;
-    width: 100%;
+    max-width: 100%;
   }
 
   @media (max-width: 768px) {
     height: 140px;
-    width: 100%;
   }
 
   @media (max-width: 480px) {
-    height: 160px;
-    width: 100%;
+    height: 120px;
+  }
+
+  @media (max-width: 360px) {
+    height: 110px;
   }
 `;
 
@@ -218,7 +275,10 @@ export const MenuInfo = styled.div`
 
   @media (max-width: 480px) {
     padding: 6px;
-    gap: 6px;
+  }
+
+  @media (max-width: 360px) {
+    padding: 4px;
   }
 `;
 
@@ -234,6 +294,12 @@ export const MenuTitle = styled.h3`
 
   @media (max-width: 480px) {
     font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 13px;
+    margin-bottom: 4px;
   }
 `;
 
@@ -245,10 +311,21 @@ export const MenuDescription = styled.p`
 
   @media (max-width: 1024px) {
     font-size: 13px;
+    margin-bottom: 28px;
   }
 
   @media (max-width: 480px) {
     font-size: 12px;
+    margin-bottom: 24px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 11px;
+    margin-bottom: 20px;
     -webkit-line-clamp: 2;
   }
 `;
@@ -270,10 +347,19 @@ export const AddButton = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
 
+  @media (max-width: 1024px) {
+    width: 100%;
+    height: 28px;
+  }
+
   @media (max-width: 480px) {
     height: 32px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 360px) {
+    height: 30px;
     font-size: 12px;
-    width: 100%;
   }
 `;
 
@@ -284,6 +370,14 @@ export const LoadingMessage = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
+
+  @media (max-width: 480px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: white;
+  }
 `;
 
 export const ErrorMessage = styled.div`
@@ -294,6 +388,24 @@ export const ErrorMessage = styled.div`
   background-color: ${theme.colors.corSecundaria};
   border-radius: 8px;
   margin: 20px;
+
+  @media (max-width: 768px) {
+    padding: 32px;
+    font-size: 16px;
+    margin: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 24px;
+    font-size: 15px;
+    margin: 12px;
+  }
+
+  @media (max-width: 360px) {
+    padding: 20px;
+    font-size: 14px;
+    margin: 8px;
+  }
 `;
 
 export const Modal = styled.div`
@@ -307,6 +419,19 @@ export const Modal = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px;
+  }
+
+  @media (max-width: 360px) {
+    padding: 4px;
+  }
 `;
 
 export const ModalContent = styled.div`
@@ -318,6 +443,28 @@ export const ModalContent = styled.div`
   height: 100%;
   color: ${theme.colors.corSecundaria};
   position: relative;
+  overflow-y: auto;
+
+  @media (max-width: 1024px) {
+    padding: 28px;
+    max-height: 90vh;
+  }
+
+  @media (max-width: 768px) {
+    padding: 24px;
+    max-height: 85vh;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px;
+    max-height: 90vh;
+    width: calc(100% - 16px);
+  }
+
+  @media (max-width: 360px) {
+    padding: 16px;
+    width: calc(100% - 8px);
+  }
 `;
 
 export const ModalCloseButton = styled.button`
@@ -329,11 +476,36 @@ export const ModalCloseButton = styled.button`
   font-size: 24px;
   color: ${theme.colors.corSecundaria};
   cursor: pointer;
+
+  @media (max-width: 480px) {
+    top: 12px;
+    right: 12px;
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+  }
+
+  @media (max-width: 360px) {
+    top: 8px;
+    right: 8px;
+    font-size: 18px;
+    width: 28px;
+    height: 28px;
+  }
 `;
 
 export const ModalHeader = styled.header`
   display: flex;
   margin-bottom: 24px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 16px;
+  }
 `;
 
 export const ModalTitle = styled.h2`
@@ -342,6 +514,21 @@ export const ModalTitle = styled.h2`
   margin-bottom: 16px;
   margin: 0 0 16px 0;
   color: ${theme.colors.corSecundaria};
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const ModalDescription = styled.p`
@@ -349,14 +536,48 @@ export const ModalDescription = styled.p`
   line-height: 1.5;
   margin-bottom: 8px;
   margin: 0 0 16px 0;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const ModalImage = styled.img`
-  max-width: 280px
+  max-width: 280px;
   width: 100%;
   max-height: 280px;
   object-fit: cover;
   margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    max-width: 200px;
+    max-height: 200px;
+    margin-bottom: 24px;
+    align-self: center;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 150px;
+    max-height: 150px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 360px) {
+    max-width: 120px;
+    max-height: 120px;
+    margin-bottom: 16px;
+  }
 `;
 
 export const ModalUl = styled.ul`
@@ -369,6 +590,11 @@ export const ModalUl = styled.ul`
   max-width: 656px;
   margin-left: 24px;
   color: ${theme.colors.corSecundaria};
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    max-width: 100%;
+  }
 `;
 
 export const ModalButton = styled.button`
@@ -384,6 +610,23 @@ export const ModalButton = styled.button`
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 14px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 16px;
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 360px) {
+    padding: 14px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
 
   &:hover {
     background-color: ${theme.colors.corPrincipal};

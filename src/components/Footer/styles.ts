@@ -12,6 +12,12 @@ export const FooterContainer = styled.footer`
   background-color: ${theme.colors.corFooter};
   padding: 40px 20px;
 
+  @media (max-width: 1024px) {
+    margin-top: 100px;
+    min-height: 350px;
+    padding: 36px 18px;
+  }
+
   @media (max-width: 768px) {
     margin-top: 80px;
     min-height: 300px;
@@ -22,6 +28,12 @@ export const FooterContainer = styled.footer`
     margin-top: 60px;
     min-height: 250px;
     padding: 24px 12px;
+  }
+
+  @media (max-width: 360px) {
+    margin-top: 40px;
+    min-height: 200px;
+    padding: 20px 8px;
   }
 
   p {
@@ -43,6 +55,13 @@ export const FooterContainer = styled.footer`
     @media (max-width: 480px) {
       font-size: 8px;
       margin-top: 20px;
+      max-width: 400px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 7px;
+      margin-top: 16px;
+      max-width: 300px;
     }
   }
 `;
@@ -51,8 +70,16 @@ export const LogoFooter = styled.img`
   width: 150px;
   height: auto;
 
+  @media (max-width: 768px) {
+    width: 130px;
+  }
+
   @media (max-width: 480px) {
     width: 120px;
+  }
+
+  @media (max-width: 360px) {
+    width: 100px;
   }
 `;
 
@@ -61,9 +88,19 @@ export const SocialFooter = styled.div`
   padding-top: 32px;
   gap: 12px;
 
+  @media (max-width: 768px) {
+    padding-top: 28px;
+    gap: 10px;
+  }
+
   @media (max-width: 480px) {
     padding-top: 24px;
     gap: 8px;
+  }
+
+  @media (max-width: 360px) {
+    padding-top: 20px;
+    gap: 6px;
   }
 
   a {
@@ -76,18 +113,28 @@ export const SocialFooter = styled.div`
     transition: all 0.3s ease;
     text-decoration: none;
 
-    img {
+    @media (max-width: 480px) {
+      width: 28px;
+      height: 28px;
+    }
+
+    @media (max-width: 360px) {
       width: 24px;
       height: 24px;
     }
 
-    @media (max-width: 480px) {
-      width: 28px;
-      height: 28px;
+    img {
+      width: 24px;
+      height: 24px;
 
-      img {
-        width: 14px;
-        height: 14px;
+      @media (max-width: 480px) {
+        width: 20px;
+        height: 20px;
+      }
+
+      @media (max-width: 360px) {
+        width: 16px;
+        height: 16px;
       }
     }
   }

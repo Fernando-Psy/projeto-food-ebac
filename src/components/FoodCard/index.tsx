@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Estrela from '../../assets/images/estrela.png';
 import {
-  AssessmentImg,
   Button,
   CardContainer,
   ContainerTitle,

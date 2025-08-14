@@ -1,8 +1,7 @@
 import axios from 'axios';
 import * as Yup from 'yup';
 import { DeliveryInfo } from '../../types';
-import InputMask from 'react-input-mask';
-import { ErrorMessage, Field, FieldHookConfig, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import {
   FormGroup,
   ErrorText,
@@ -37,6 +36,22 @@ interface DeliveryFormProps {
   onSubmit: (values: DeliveryInfo) => void;
   onBack: () => void;
 }
+
+// Funções de máscara
+const applyCepMask = (value: string): string => {
+  return value
+    .replace(/\D/g, '')
+    .replace(/(\d{5})(\d)/, '$1-$2')
+    .substr(0, 9);
+};
+
+const applyPhoneMask = (value: string): string => {
+  return value
+    .replace(/\D/g, '')
+    .replace(/(\d{2})(\d)/, '($1) $2')
+    .replace(/(\d{5})(\d)/, '$1-$2')
+    .substr(0, 15);
+};
 
 export const DeliveryForm = ({
   initialValues,
@@ -85,18 +100,17 @@ export const DeliveryForm = ({
           <FormGroup>
             <label htmlFor="cep">CEP</label>
             <Field name="cep">
-              {({ field }: { field: FieldHookConfig<string> }) => (
-                <InputMask
+              {({ field }: any) => (
+                <input
                   {...field}
-                  mask="99999-999"
-                  maskChar={null}
-                  onChange={async (e: React.ChangeEvent<HTMLInputElement>) => {
-                    const cep = e.target.value;
-                    field.onChange(e);
+                  type="text"
+                  value={applyCepMask(field.value)}
+                  onChange={async (e) => {
+                    const maskedValue = applyCepMask(e.target.value);
+                    setFieldValue('cep', maskedValue);
 
-                    if (cep.length === 9) {
-                      // 99999-999
-                      const addressData = await fetchAddressByCep(cep);
+                    if (maskedValue.length === 9) {
+                      const addressData = await fetchAddressByCep(maskedValue);
                       if (addressData) {
                         setFieldValue('address', addressData.logradouro);
                         setFieldValue('neighborhood', addressData.bairro);
@@ -105,11 +119,7 @@ export const DeliveryForm = ({
                       }
                     }
                   }}
-                >
-                  {(
-                    inputProps: React.InputHTMLAttributes<HTMLInputElement>,
-                  ) => <input {...inputProps} type="text" />}
-                </InputMask>
+                />
               )}
             </Field>
             <ErrorMessage name="cep" component={ErrorText} />
@@ -155,7 +165,7 @@ export const DeliveryForm = ({
 
             <FormGroup style={{ flex: 1 }}>
               <label htmlFor="state">Estado</label>
-              <Field name="state" type="text" maxLength="2" />
+              <Field name="state" type="text" maxLength={2} />
               <ErrorMessage name="state" component={ErrorText} />
             </FormGroup>
           </div>
@@ -163,12 +173,16 @@ export const DeliveryForm = ({
           <FormGroup>
             <label htmlFor="phone">Telefone</label>
             <Field name="phone">
-              {({ field }: { field: FieldHookConfig<string> }) => (
-                <InputMask {...field} mask="(99) 99999-9999" maskChar={null}>
-                  {(
-                    inputProps: React.InputHTMLAttributes<HTMLInputElement>,
-                  ) => <input {...inputProps} type="tel" />}
-                </InputMask>
+              {({ field }: any) => (
+                <input
+                  {...field}
+                  type="tel"
+                  value={applyPhoneMask(field.value)}
+                  onChange={(e) => {
+                    const maskedValue = applyPhoneMask(e.target.value);
+                    setFieldValue('phone', maskedValue);
+                  }}
+                />
               )}
             </Field>
             <ErrorMessage name="phone" component={ErrorText} />
