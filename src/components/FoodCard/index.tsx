@@ -21,7 +21,7 @@ interface FoodCardProps {
   description: string;
 }
 
-const truncateText = (text: string, maxLength: 250): string => {
+const truncateText = (text: string, maxLength: 195): string => {
   if (text.length <= maxLength) return text;
   return `${text.substring(0, maxLength)}...`;
 };
@@ -48,7 +48,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
             <img src={Estrela} alt="Avaliação" />
           </li>
         </ContainerTitle>
-        <DescriptionCard>{truncateText(description, 250)}</DescriptionCard>
+        <DescriptionCard>{truncateText(description, 195)}</DescriptionCard>
         <br />
         <Button as={Link} to={`/restaurant/${id}`}>
           Saiba mais
