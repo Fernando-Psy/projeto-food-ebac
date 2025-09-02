@@ -92,7 +92,7 @@ export const DeliveryForm = ({
       {({ values, setFieldValue, isSubmitting, isValid, dirty }) => (
         <Form>
           <FormGroup>
-            <label htmlFor="name">Nome Completo</label>
+            <label htmlFor="name">Quem irá receber?</label>
             <Field name="name" type="text" />
             <ErrorMessage name="name" component={ErrorText} />
           </FormGroup>
@@ -144,7 +144,7 @@ export const DeliveryForm = ({
             </FormGroup>
 
             <FormGroup style={{ flex: 2 }}>
-              <label htmlFor="complement">Complemento</label>
+              <label htmlFor="complement">Complemento (opcional)</label>
               <Field name="complement" type="text" />
               <ErrorMessage name="complement" component={ErrorText} />
             </FormGroup>
@@ -189,15 +189,15 @@ export const DeliveryForm = ({
           </FormGroup>
 
           <ButtonGroup>
-            <Button type="button" onClick={onBack}>
-              Voltar
-            </Button>
             <Button
               type="submit"
               primary
               disabled={isSubmitting || !isValid || !dirty}
             >
-              Continuar para Pagamento
+              Continuar com o pagamento
+            </Button>
+            <Button type="button" onClick={onBack}>
+              Voltar para o carrinho
             </Button>
           </ButtonGroup>
         </Form>

@@ -122,24 +122,24 @@ export const DescriptionCard = styled.p`
   margin: 8px;
   color: ${theme.colors.corPrincipal};
   line-height: 1.5;
-  padding-bottom: 64px;
+  padding-bottom: 24px;
 
   @media (max-width: 768px) {
     font-size: 13px;
     margin: 6px;
-    padding-bottom: 60px;
+    padding-bottom: 16px;
   }
 
   @media (max-width: 480px) {
     font-size: 12px;
     line-height: 1.4;
-    padding-bottom: 56px;
+    padding-bottom: 16px;
   }
 
   @media (max-width: 360px) {
     font-size: 11px;
     margin: 4px;
-    padding-bottom: 52px;
+    padding-bottom: 16px;
   }
 `;
 

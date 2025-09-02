@@ -33,6 +33,7 @@ export const FormGroup = styled.div`
 
   input,
   select {
+    background-color: ${theme.colors.corSecundaria};
     color: ${theme.colors.corPrincipal};
     width: 100%;
     padding: 10px;
@@ -61,8 +62,7 @@ export const ErrorText = styled.div`
 `;
 
 export const ButtonGroup = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: block;
   margin-top: 20px;
 
   @media (max-width: 480px) {
@@ -73,7 +73,11 @@ export const ButtonGroup = styled.div`
 `;
 
 export const Button = styled.button<{ primary?: boolean }>`
+  width: 100%;
   height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 12px 32px;
   background-color: ${theme.colors.corSecundaria};
   color: ${theme.colors.corPrincipal};

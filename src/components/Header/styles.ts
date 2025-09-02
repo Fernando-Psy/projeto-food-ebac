@@ -46,6 +46,7 @@ export const HeaderContainer = styled.header`
   }
 
   p {
+    height: 100%;
     text-align: center;
     font-size: 36px;
     font-weight: 900;

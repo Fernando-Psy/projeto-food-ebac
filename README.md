@@ -1,46 +1,79 @@
-# Getting Started with Create React App
+# Projeto Food EBAC
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é uma aplicação front-end desenvolvida em React para um sistema de pedidos de comida online. O objetivo é permitir que usuários naveguem por restaurantes, visualizem cardápios, adicionem itens ao carrinho e finalizem pedidos.
 
-## Available Scripts
+## Estrutura do Projeto
 
-In the project directory, you can run:
+```
+public/           # Arquivos públicos e estáticos
+src/              # Código-fonte principal
+	assets/         # Imagens e ícones
+	components/     # Componentes reutilizáveis
+		Cart/         # Carrinho de compras
+		CheckoutSteps/# Etapas do checkout
+		DeliveryForm/ # Formulário de entrega
+		FoodCard/     # Cardápio dos restaurantes
+		Footer/       # Rodapé
+		Header/       # Cabeçalho
+		HeaderInternal/# Cabeçalho interno
+		pages/        # Páginas principais
+			Home/       # Página inicial
+			RestaurantDetail/ # Detalhes do restaurante
+		PaymentForm/  # Formulário de pagamento
+	contexts/       # Contextos globais (ex: carrinho)
+	hooks/          # Hooks customizados
+	services/       # Serviços de API e utilitários
+	styles/         # Estilos globais e temas
+	types/          # Tipos TypeScript
+	utils/          # Funções utilitárias
+```
 
-### `npm start`
+## Tecnologias Utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React
+- TypeScript
+- Styled-components
+- Axios
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Instalação
 
-### `npm test`
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Fernando-Psy/projeto-food-ebac.git
+   ```
+2. Acesse a pasta do projeto:
+   ```bash
+   cd projeto-food-ebac
+   ```
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Executando o Projeto
 
-### `npm run build`
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+A aplicação estará disponível em `http://localhost:3000`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Funcionalidades
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Listagem de restaurantes
+- Visualização de cardápio
+- Adição de itens ao carrinho
+- Checkout com etapas (entrega, pagamento, confirmação)
+- Integração com API para busca de restaurantes e cálculo de frete
 
-### `npm run eject`
+## Como Contribuir
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Fork este repositório
+2. Crie uma branch: `git checkout -b minha-feature`
+3. Faça suas alterações e commit: `git commit -m 'Minha feature'`
+4. Envie para o repositório remoto: `git push origin minha-feature`
+5. Abra um Pull Request
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Licença
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Este projeto está sob a licença MIT.

@@ -33,6 +33,11 @@ import { apiService } from '../../../services/api';
 import { Restaurant, MenuItem as MenuItemType } from '../../../types';
 import { useCart } from '../../../contexts/CartContext';
 
+const truncateText = (text: string, maxLength: 130): string => {
+  if (text.length <= maxLength) return text;
+  return `${text.substring(0, maxLength)}...`;
+};
+
 const RestaurantDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [restaurant, setRestaurant] = useState<Restaurant | null>(null);

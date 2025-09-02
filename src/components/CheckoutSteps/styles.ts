@@ -1,14 +1,11 @@
 import styled from 'styled-components';
+import { theme } from '../../styles/theme';
 
 export const StepsContainer = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 30px;
-
-  @media (max-width: 768px) {
-    flex-wrap: wrap;
-    margin-bottom: 25px;
-  }
 
   @media (max-width: 480px) {
     flex-direction: column;
@@ -17,10 +14,16 @@ export const StepsContainer = styled.div`
 `;
 
 export const Step = styled.div<{ active: boolean }>`
+  flex: 1;
+  min-width: 100px;
   padding: 10px 20px;
-  margin: 0 10px;
-  border-bottom: 3px solid ${({ active }) => (active ? '#FF9F1C' : '#ddd')};
-  color: ${({ active }) => (active ? '#FF9F1C' : '#777')};
+  margin: 0 5px;
+  text-align: center;
+  border-bottom: 3px solid
+    ${({ active }) =>
+      active ? theme.colors.corOndeEstou : theme.colors.corSecundaria};
+  color: ${({ active }) =>
+    active ? theme.colors.corOndeEstou : theme.colors.corSecundaria};
   font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
 
   @media (max-width: 768px) {
@@ -34,7 +37,9 @@ export const Step = styled.div<{ active: boolean }>`
     margin: 5px 0;
     text-align: center;
     border-bottom: none;
-    border-left: 3px solid ${({ active }) => (active ? '#FF9F1C' : '#ddd')};
+    border-left: 3px solid
+      ${({ active }) =>
+        active ? theme.colors.corOndeEstou : theme.colors.corSecundaria};
   }
 
   @media (max-width: 360px) {
@@ -56,7 +61,7 @@ export const ConfirmationContainer = styled.div`
   }
 
   h2 {
-    color: #ff9f1c;
+    color: ${theme.colors.corOndeEstou};
     margin-bottom: 20px;
 
     @media (max-width: 480px) {
@@ -87,7 +92,7 @@ export const ConfirmationContainer = styled.div`
   .order-number {
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: ${theme.colors.corSecundaria};
     margin: 20px 0;
 
     @media (max-width: 480px) {
@@ -104,8 +109,9 @@ export const ConfirmationContainer = styled.div`
 
 export const Button = styled.button<{ primary?: boolean }>`
   padding: 12px 24px;
-  background-color: ${({ primary }) => (primary ? '#FF9F1C' : '#f5f5f5')};
-  color: ${({ primary }) => (primary ? 'white' : '#333')};
+  background-color: ${({ primary }) =>
+    primary ? theme.colors.corOndeEstou : theme.colors.corSecundaria};
+  color: ${({ primary }) => (primary ? 'white' : theme.colors.corSecundaria)};
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -127,6 +133,7 @@ export const Button = styled.button<{ primary?: boolean }>`
   }
 
   &:hover {
-    background-color: ${({ primary }) => (primary ? '#FFBF69' : '#e0e0e0')};
+    background-color: ${({ primary }) =>
+      primary ? theme.colors.corOndeEstou : theme.colors.corSecundaria};
   }
 `;
