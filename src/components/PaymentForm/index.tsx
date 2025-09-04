@@ -217,15 +217,15 @@ export const PaymentForm = ({ onSubmit, onBack }: PaymentFormProps) => {
           )}
 
           <ButtonGroup>
-            <Button type="button" onClick={onBack}>
-              Voltar
-            </Button>
             <Button
               type="submit"
               primary
               disabled={isSubmitting || !isValid || !dirty}
             >
-              Finalizar Pedido
+              Finalizar Pagamento
+            </Button>
+            <Button type="button" onClick={onBack}>
+              Voltar para edição de endereço
             </Button>
           </ButtonGroup>
         </Form>
