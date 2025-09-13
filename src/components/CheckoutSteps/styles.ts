@@ -1,30 +1,13 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
-export const StepsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-
-  @media (max-width: 480px) {
-    flex-direction: column;
-    margin-bottom: 20px;
-  }
-`;
-
 export const Step = styled.div<{ active: boolean }>`
   flex: 1;
   min-width: 100px;
   padding: 10px 20px;
   margin: 0 5px;
   text-align: center;
-  border-bottom: 3px solid
-    ${({ active }) =>
-      active ? theme.colors.corOndeEstou : theme.colors.corSecundaria};
-  color: ${({ active }) =>
-    active ? theme.colors.corOndeEstou : theme.colors.corSecundaria};
-  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
+  border-bottom: 3px solid;
 
   @media (max-width: 768px) {
     padding: 8px 16px;
@@ -37,9 +20,7 @@ export const Step = styled.div<{ active: boolean }>`
     margin: 5px 0;
     text-align: center;
     border-bottom: none;
-    border-left: 3px solid
-      ${({ active }) =>
-        active ? theme.colors.corOndeEstou : theme.colors.corSecundaria};
+    border-left: 3px solid;
   }
 
   @media (max-width: 360px) {
@@ -61,7 +42,7 @@ export const ConfirmationContainer = styled.div`
   }
 
   h2 {
-    color: ${theme.colors.corOndeEstou};
+    color: ${theme.colors.corSecundaria};
     margin-bottom: 20px;
 
     @media (max-width: 480px) {
@@ -109,8 +90,7 @@ export const ConfirmationContainer = styled.div`
 
 export const Button = styled.button<{ primary?: boolean }>`
   padding: 12px 24px;
-  background-color: ${({ primary }) =>
-    primary ? theme.colors.corOndeEstou : theme.colors.corSecundaria};
+  background-color: ${theme.colors.corSecundaria};
   color: ${({ primary }) => (primary ? 'white' : theme.colors.corSecundaria)};
   border: none;
   border-radius: 4px;
@@ -133,7 +113,6 @@ export const Button = styled.button<{ primary?: boolean }>`
   }
 
   &:hover {
-    background-color: ${({ primary }) =>
-      primary ? theme.colors.corOndeEstou : theme.colors.corSecundaria};
+    background-color: ${theme.colors.corSecundaria};
   }
 `;

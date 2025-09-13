@@ -5,6 +5,5 @@ export const theme = {
     corFooter: '#FFEBD9',
     corPrincipal: '#e66767',
     corBranco: '#ffffff',
-    corOndeEstou: '#009929',
   },
 };

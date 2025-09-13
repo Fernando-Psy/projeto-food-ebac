@@ -1,39 +1,35 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { FormGroup, ErrorText, ButtonGroup, Button } from './styles';
+import {
+  PaymentContainer,
+  PaymentHeader,
+  FormGroup,
+  ErrorText,
+  ButtonGroup,
+  Button,
+  InputRow,
+} from './styles';
 
 const PaymentSchema = Yup.object().shape({
-  paymentMethod: Yup.string().required('Selecione um método de pagamento'),
-  cardNumber: Yup.string().when('paymentMethod', {
-    is: (value: string) => value === 'credit',
-    then: (schema) =>
-      schema
-        .matches(/^\d{4} \d{4} \d{4} \d{4}$/, 'Número do cartão inválido')
-        .required('Obrigatório para cartão de crédito'),
-  }),
-  cardExpiry: Yup.string().when('paymentMethod', {
-    is: (value: string) => value === 'credit',
-    then: (schema) =>
-      schema
-        .matches(/^\d{2}\/\d{2}$/, 'Data inválida (MM/AA)')
-        .required('Obrigatório para cartão de crédito'),
-  }),
-  cardCvv: Yup.string().when('paymentMethod', {
-    is: (value: string) => value === 'credit',
-    then: (schema) =>
-      schema
-        .matches(/^\d{3}$/, 'CVV inválido')
-        .required('Obrigatório para cartão de crédito'),
-  }),
-  cardName: Yup.string().when('paymentMethod', {
-    is: (value: string) => value === 'credit',
-    then: (schema) => schema.required('Obrigatório para cartão de crédito'),
-  }),
+  cardName: Yup.string().required('Nome no cartão é obrigatório'),
+  cardNumber: Yup.string()
+    .matches(/^\d{4} \d{4} \d{4} \d{4}$/, 'Número do cartão inválido')
+    .required('Número do cartão é obrigatório'),
+  cardExpiry: Yup.string()
+    .matches(/^\d{2}\/\d{2}$/, 'Data inválida (MM/AA)')
+    .required('Mês de vencimento é obrigatório'),
+  cardExpiryYear: Yup.string()
+    .matches(/^\d{2}\/\d{2}$/, 'Data inválida (MM/AA)')
+    .required('Ano de vencimento é obrigatório'),
+  cardCvv: Yup.string()
+    .matches(/^\d{3}$/, 'CVV inválido')
+    .required('CVV é obrigatório'),
 });
 
 interface PaymentFormProps {
   onSubmit: (values: any) => void;
   onBack: () => void;
+  amount: number;
 }
 
 // Funções de máscara
@@ -46,64 +42,51 @@ const applyCardMask = (value: string): string => {
     .substr(0, 19);
 };
 
-const applyExpiryMask = (value: string): string => {
-  return value
-    .replace(/\D/g, '')
-    .replace(/(\d{2})(\d)/, '$1/$2')
-    .substr(0, 5);
+const applyMonthMask = (value: string): string => {
+  return value.replace(/\D/g, '').substr(0, 2);
+};
+
+const applyYearMask = (value: string): string => {
+  return value.replace(/\D/g, '').substr(0, 2);
 };
 
 const applyCvvMask = (value: string): string => {
   return value.replace(/\D/g, '').substr(0, 3);
 };
 
-export const PaymentForm = ({ onSubmit, onBack }: PaymentFormProps) => {
+export const PaymentForm = ({ onSubmit, onBack, amount }: PaymentFormProps) => {
   return (
-    <Formik
-      initialValues={{
-        paymentMethod: '',
-        cardNumber: '',
-        cardExpiry: '',
-        cardCvv: '',
-        cardName: '',
-      }}
-      validationSchema={PaymentSchema}
-      onSubmit={onSubmit}
-    >
-      {({ values, setFieldValue, isSubmitting, isValid, dirty }) => (
-        <Form>
-          <FormGroup>
-            <label>
-              <Field type="radio" name="paymentMethod" value="credit" />
-              Cartão de Crédito
-            </label>
-          </FormGroup>
+    <PaymentContainer>
+      <PaymentHeader>
+        Pagamento - Valor a pagar R$ {amount.toFixed(2).replace('.', ',')}
+      </PaymentHeader>
 
-          <FormGroup>
-            <label>
-              <Field type="radio" name="paymentMethod" value="debit" />
-              Cartão de Débito
-            </label>
-          </FormGroup>
+      <Formik
+        initialValues={{
+          cardName: '',
+          cardNumber: '',
+          cardExpiry: '',
+          cardExpiryYear: '',
+          cardCvv: '',
+        }}
+        validationSchema={PaymentSchema}
+        onSubmit={onSubmit}
+      >
+        {({ setFieldValue, isSubmitting, isValid, dirty }) => (
+          <Form>
+            <FormGroup>
+              <label htmlFor="cardName">Nome no cartão</label>
+              <Field
+                name="cardName"
+                type="text"
+                placeholder="João Paulo de Souza"
+              />
+              <ErrorMessage name="cardName" component={ErrorText} />
+            </FormGroup>
 
-          <FormGroup>
-            <label>
-              <Field type="radio" name="paymentMethod" value="pix" />
-              PIX
-            </label>
-          </FormGroup>
-
-          <FormGroup>
-            <label>
-              <Field type="radio" name="paymentMethod" value="cash" />
-              Dinheiro
-            </label>
-          </FormGroup>
-
-          {values.paymentMethod === 'credit' && (
-            <>
+            <InputRow>
               <FormGroup>
-                <label htmlFor="cardNumber">Número do Cartão</label>
+                <label htmlFor="cardNumber">Número do cartão</label>
                 <Field name="cardNumber">
                   {({
                     field,
@@ -131,105 +114,111 @@ export const PaymentForm = ({ onSubmit, onBack }: PaymentFormProps) => {
                 <ErrorMessage name="cardNumber" component={ErrorText} />
               </FormGroup>
 
-              <div style={{ display: 'flex', gap: '15px' }}>
-                <FormGroup style={{ flex: 1 }}>
-                  <label htmlFor="cardExpiry">Validade</label>
-                  <Field name="cardExpiry">
-                    {({
-                      field,
-                    }: {
-                      field: {
-                        name: string;
-                        value: string;
-                        onChange: (
-                          e: React.ChangeEvent<HTMLInputElement>,
-                        ) => void;
-                        onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-                      };
-                    }) => (
-                      <input
-                        {...field}
-                        type="text"
-                        value={applyExpiryMask(field.value)}
-                        onChange={(e) => {
-                          const maskedValue = applyExpiryMask(e.target.value);
-                          setFieldValue('cardExpiry', maskedValue);
-                        }}
-                      />
-                    )}
-                  </Field>
-                  <ErrorMessage name="cardExpiry" component={ErrorText} />
-                </FormGroup>
+              <FormGroup className="cvv">
+                <label htmlFor="cardCvv">CVV</label>
+                <Field name="cardCvv">
+                  {({
+                    field,
+                  }: {
+                    field: {
+                      name: string;
+                      value: string;
+                      onChange: (
+                        e: React.ChangeEvent<HTMLInputElement>,
+                      ) => void;
+                      onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+                    };
+                  }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      value={applyCvvMask(field.value)}
+                      onChange={(e) => {
+                        const maskedValue = applyCvvMask(e.target.value);
+                        setFieldValue('cardCvv', maskedValue);
+                      }}
+                    />
+                  )}
+                </Field>
+                <ErrorMessage name="cardCvv" component={ErrorText} />
+              </FormGroup>
+            </InputRow>
 
-                <FormGroup style={{ flex: 1 }}>
-                  <label htmlFor="cardCvv">CVV</label>
-                  <Field name="cardCvv">
-                    {({
-                      field,
-                    }: {
-                      field: {
-                        name: string;
-                        value: string;
-                        onChange: (
-                          e: React.ChangeEvent<HTMLInputElement>,
-                        ) => void;
-                        onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-                      };
-                    }) => (
-                      <input
-                        {...field}
-                        type="text"
-                        value={applyCvvMask(field.value)}
-                        onChange={(e) => {
-                          const maskedValue = applyCvvMask(e.target.value);
-                          setFieldValue('cardCvv', maskedValue);
-                        }}
-                      />
-                    )}
-                  </Field>
-                  <ErrorMessage name="cardCvv" component={ErrorText} />
-                </FormGroup>
-              </div>
+            <InputRow>
+              <FormGroup>
+                <label htmlFor="cardExpiry">Mês de vencimento</label>
+                <Field name="cardExpiry">
+                  {({
+                    field,
+                  }: {
+                    field: {
+                      name: string;
+                      value: string;
+                      onChange: (
+                        e: React.ChangeEvent<HTMLInputElement>,
+                      ) => void;
+                      onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+                    };
+                  }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      value={applyMonthMask(field.value)}
+                      onChange={(e) => {
+                        const maskedValue = applyMonthMask(e.target.value);
+                        setFieldValue('cardExpiry', maskedValue);
+                      }}
+                    />
+                  )}
+                </Field>
+                <ErrorMessage name="cardExpiry" component={ErrorText} />
+              </FormGroup>
 
               <FormGroup>
-                <label htmlFor="cardName">Nome no Cartão</label>
-                <Field name="cardName" type="text" />
-                <ErrorMessage name="cardName" component={ErrorText} />
+                <label htmlFor="cardExpiryYear">Ano de vencimento</label>
+                <Field name="cardExpiryYear">
+                  {({
+                    field,
+                  }: {
+                    field: {
+                      name: string;
+                      value: string;
+                      onChange: (
+                        e: React.ChangeEvent<HTMLInputElement>,
+                      ) => void;
+                      onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+                    };
+                  }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      value={applyYearMask(field.value)}
+                      onChange={(e) => {
+                        const maskedValue = applyYearMask(e.target.value);
+                        setFieldValue('cardExpiryYear', maskedValue);
+                      }}
+                    />
+                  )}
+                </Field>
+                <ErrorMessage name="cardExpiryYear" component={ErrorText} />
               </FormGroup>
-            </>
-          )}
+            </InputRow>
 
-          {values.paymentMethod === 'pix' && (
-            <FormGroup>
-              <p>
-                Você receberá um QR Code para pagamento via PIX após confirmar o
-                pedido.
-              </p>
-            </FormGroup>
-          )}
-
-          {values.paymentMethod === 'cash' && (
-            <FormGroup>
-              <p>
-                Prepare o valor em dinheiro para quando o entregador chegar.
-              </p>
-            </FormGroup>
-          )}
-
-          <ButtonGroup>
-            <Button
-              type="submit"
-              primary
-              disabled={isSubmitting || !isValid || !dirty}
-            >
-              Finalizar Pagamento
-            </Button>
-            <Button type="button" onClick={onBack}>
-              Voltar para edição de endereço
-            </Button>
-          </ButtonGroup>
-        </Form>
-      )}
-    </Formik>
+            <ButtonGroup>
+              <Button
+                type="submit"
+                primary
+                disabled={isSubmitting || !isValid || !dirty}
+              >
+                Finalizar pagamento
+              </Button>
+              <Button type="button" onClick={onBack}>
+                Voltar para a edição de endereço
+              </Button>
+            </ButtonGroup>
+          </Form>
+        )}
+      </Formik>
+    </PaymentContainer>
   );
 };

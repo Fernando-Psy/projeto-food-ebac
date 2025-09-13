@@ -2,7 +2,7 @@ import { useCart } from '../../contexts/CartContext';
 import { DeliveryForm } from '../DeliveryForm';
 import { PaymentForm } from '../PaymentForm';
 import { DeliveryInfo } from '../../types';
-import { StepsContainer, Step, ConfirmationContainer, Button } from './styles';
+import { ConfirmationContainer, Button } from './styles';
 
 export const CheckoutSteps = () => {
   const {
@@ -37,13 +37,6 @@ export const CheckoutSteps = () => {
 
   return (
     <>
-      <StepsContainer>
-        <Step active={checkoutStep === 'cart'}>Carrinho</Step>
-        <Step active={checkoutStep === 'delivery'}>Entrega</Step>
-        <Step active={checkoutStep === 'payment'}>Pagamento</Step>
-        <Step active={checkoutStep === 'confirmation'}>Confirmação</Step>
-      </StepsContainer>
-
       {checkoutStep === 'delivery' && (
         <DeliveryForm
           initialValues={
@@ -65,7 +58,11 @@ export const CheckoutSteps = () => {
       )}
 
       {checkoutStep === 'payment' && (
-        <PaymentForm onSubmit={handlePaymentSubmit} onBack={goToPrevStep} />
+        <PaymentForm
+          onSubmit={handlePaymentSubmit}
+          onBack={goToPrevStep}
+          amount={0}
+        />
       )}
 
       {checkoutStep === 'confirmation' && (
