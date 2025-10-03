@@ -6,7 +6,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 384px;
+  height: 384px;
   background-image: url(${vector});
   background-size: cover;
   background-position: center;
@@ -15,14 +15,9 @@ export const HeaderContainer = styled.header`
   justify-content: center;
   padding-top: 20px;
 
-  @media (max-width: 1200px) {
-    min-height: 350px;
-    padding: 18px 16px;
-  }
-
   @media (max-width: 1024px) {
     min-height: 320px;
-    padding: 16px 14px;
+    padding: 18px 16px;
   }
 
   @media (max-width: 768px) {
@@ -36,28 +31,17 @@ export const HeaderContainer = styled.header`
   }
 
   @media (max-width: 360px) {
-    min-height: 200px;
-    padding: 10px 6px;
-  }
-
-  @media (max-height: 600px) {
     min-height: 220px;
     padding: 10px 6px;
   }
 
   p {
-    height: 100%;
     text-align: center;
     font-size: 36px;
     font-weight: 900;
     color: ${theme.colors.corPrincipal};
     margin-top: 32px;
     line-height: 1.2;
-
-    @media (max-width: 1200px) {
-      font-size: 34px;
-      margin-top: 30px;
-    }
 
     @media (max-width: 1024px) {
       font-size: 32px;
@@ -84,22 +68,12 @@ export const HeaderContainer = styled.header`
       margin-top: 16px;
       max-width: 280px;
     }
-
-    @media (max-height: 600px) {
-      font-size: 20px;
-      margin-top: 16px;
-      max-width: 280px;
-    }
   }
 `;
 
 export const LogoHeader = styled.img`
   width: 150px;
   height: auto;
-
-  @media (max-width: 1200px) {
-    width: 145px;
-  }
 
   @media (max-width: 1024px) {
     width: 140px;
@@ -114,10 +88,6 @@ export const LogoHeader = styled.img`
   }
 
   @media (max-width: 360px) {
-    width: 100px;
-  }
-
-  @media (max-height: 600px) {
     width: 100px;
   }
 `;

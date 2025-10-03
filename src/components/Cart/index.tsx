@@ -80,27 +80,13 @@ const Cart = () => {
               <CartSummary>
                 <p>Total: R$ {cartTotal.toFixed(2)}</p>
                 <button onClick={handleFinalizePurchase}>
-                  Finalizar Compra
+                  Continuar com a entrega
                 </button>
               </CartSummary>
             )}
           </>
         ) : (
           <>
-            <button
-              onClick={toggleCart}
-              style={{
-                position: 'absolute',
-                top: '10px',
-                right: '10px',
-                background: 'transparent',
-                border: 'none',
-                fontSize: '24px',
-                cursor: 'pointer',
-              }}
-            >
-              ×
-            </button>
             <CheckoutSteps />
           </>
         )}

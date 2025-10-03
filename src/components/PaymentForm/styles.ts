@@ -1,13 +1,11 @@
 import styled from 'styled-components';
+import { theme } from '../../styles/theme';
 
 export const PaymentContainer = styled.div`
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-  border-radius: 12px;
   padding: 24px;
   color: white;
   max-width: 400px;
   margin: 0 auto;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 480px) {
     padding: 20px;
@@ -20,10 +18,10 @@ export const PaymentContainer = styled.div`
 `;
 
 export const PaymentHeader = styled.h2`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   margin: 0 0 24px 0;
-  color: white;
+  color: ${theme.colors.corFooter};
 
   @media (max-width: 480px) {
     font-size: 16px;
@@ -72,12 +70,12 @@ export const FormGroup = styled.div`
 
   input {
     width: 100%;
+    height: 32px;
     padding: 12px;
     border: none;
-    border-radius: 6px;
     font-size: 14px;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #333;
+    background-color: ${theme.colors.corFooter};
+    color: ${theme.colors.corPrincipal};
     box-sizing: border-box;
     transition: all 0.2s ease;
 
@@ -125,7 +123,7 @@ export const InputRow = styled.div`
 `;
 
 export const ErrorText = styled.div`
-  color: #ffe5e5;
+  color: ${theme.colors.corFooter};
   font-size: 12px;
   margin-top: 4px;
   font-weight: 400;
@@ -148,42 +146,15 @@ export const ButtonGroup = styled.div`
 `;
 
 export const Button = styled.button<{ primary?: boolean }>`
+  color: ${theme.colors.corPrincipal};
+  background-color: ${theme.colors.corFooter};
   width: 100%;
-  padding: 14px 20px;
+  height: 24px;
   border: none;
-  border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-
-  ${(props) =>
-    props.primary
-      ? `
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-
-    &:hover:not(:disabled) {
-      background-color: rgba(255, 255, 255, 0.3);
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  `
-      : `
-    background-color: transparent;
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-  `}
 
   @media (max-width: 480px) {
     padding: 16px 20px;

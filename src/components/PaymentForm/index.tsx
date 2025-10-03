@@ -10,19 +10,43 @@ import {
   InputRow,
 } from './styles';
 
+// Validação customizada para data de expiração
+const isValidExpiryDate = (value: string | undefined): boolean => {
+  if (!value || value.length !== 5) return false;
+
+  const [month, year] = value.split('/');
+  const monthNum = parseInt(month, 10);
+  const yearNum = parseInt(`20${year}`, 10);
+
+  if (monthNum < 1 || monthNum > 12) return false;
+
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth() + 1;
+
+  if (yearNum < currentYear) return false;
+  if (yearNum === currentYear && monthNum < currentMonth) return false;
+
+  return true;
+};
+
 const PaymentSchema = Yup.object().shape({
-  cardName: Yup.string().required('Nome no cartão é obrigatório'),
+  cardName: Yup.string()
+    .min(3, 'Nome deve ter pelo menos 3 caracteres')
+    .required('Nome no cartão é obrigatório'),
   cardNumber: Yup.string()
     .matches(/^\d{4} \d{4} \d{4} \d{4}$/, 'Número do cartão inválido')
     .required('Número do cartão é obrigatório'),
   cardExpiry: Yup.string()
-    .matches(/^\d{2}\/\d{2}$/, 'Data inválida (MM/AA)')
-    .required('Mês de vencimento é obrigatório'),
-  cardExpiryYear: Yup.string()
-    .matches(/^\d{2}\/\d{2}$/, 'Data inválida (MM/AA)')
-    .required('Ano de vencimento é obrigatório'),
+    .matches(/^\d{2}\/\d{2}$/, 'Use o formato MM/AA')
+    .test(
+      'valid-date',
+      'Data de expiração inválida ou vencida',
+      isValidExpiryDate,
+    )
+    .required('Data de vencimento é obrigatória'),
   cardCvv: Yup.string()
-    .matches(/^\d{3}$/, 'CVV inválido')
+    .matches(/^\d{3,4}$/, 'CVV deve ter 3 ou 4 dígitos')
     .required('CVV é obrigatório'),
 });
 
@@ -32,7 +56,7 @@ interface PaymentFormProps {
   amount: number;
 }
 
-// Funções de máscara
+// Funções de máscara aprimoradas
 const applyCardMask = (value: string): string => {
   return value
     .replace(/\D/g, '')
@@ -42,16 +66,33 @@ const applyCardMask = (value: string): string => {
     .substr(0, 19);
 };
 
-const applyMonthMask = (value: string): string => {
-  return value.replace(/\D/g, '').substr(0, 2);
-};
+const applyExpiryMask = (value: string): string => {
+  const cleaned = value.replace(/\D/g, '');
 
-const applyYearMask = (value: string): string => {
-  return value.replace(/\D/g, '').substr(0, 2);
+  if (cleaned.length >= 2) {
+    const month = cleaned.substr(0, 2);
+    const year = cleaned.substr(2, 2);
+
+    // Validação básica do mês durante a digitação
+    if (parseInt(month) > 12) {
+      return cleaned.substr(0, 1);
+    }
+
+    return year ? `${month}/${year}` : month;
+  }
+
+  return cleaned;
 };
 
 const applyCvvMask = (value: string): string => {
-  return value.replace(/\D/g, '').substr(0, 3);
+  return value.replace(/\D/g, '').substr(0, 4); // Permitir até 4 dígitos
+};
+
+const formatCardName = (value: string): string => {
+  return value
+    .replace(/[^a-zA-ZÀ-ÿ\s]/g, '') // Apenas letras e espaços
+    .replace(/\s+/g, ' ') // Múltiplos espaços para um só
+    .toUpperCase(); // Maiúsculas (padrão em cartões)
 };
 
 export const PaymentForm = ({ onSubmit, onBack, amount }: PaymentFormProps) => {
@@ -66,72 +107,90 @@ export const PaymentForm = ({ onSubmit, onBack, amount }: PaymentFormProps) => {
           cardName: '',
           cardNumber: '',
           cardExpiry: '',
-          cardExpiryYear: '',
           cardCvv: '',
         }}
         validationSchema={PaymentSchema}
-        onSubmit={onSubmit}
+        onSubmit={(values) => {
+          // Limpar dados antes de enviar
+          const cleanData = {
+            ...values,
+            cardNumber: values.cardNumber.replace(/\s/g, ''), // Remove espaços
+            cardName: values.cardName.trim(),
+          };
+          onSubmit(cleanData);
+        }}
       >
-        {({ setFieldValue, isSubmitting, isValid, dirty }) => (
+        {({ setFieldValue, values, isSubmitting, isValid, dirty }) => (
           <Form>
             <FormGroup>
               <label htmlFor="cardName">Nome no cartão</label>
-              <Field
-                name="cardName"
-                type="text"
-                placeholder="João Paulo de Souza"
-              />
+              <Field name="cardName">
+                {({ field }: any) => (
+                  <input
+                    {...field}
+                    type="text"
+                    placeholder="JOÃO PAULO DE SOUZA"
+                    value={formatCardName(field.value)}
+                    onChange={(e) => {
+                      const formattedValue = formatCardName(e.target.value);
+                      setFieldValue('cardName', formattedValue);
+                    }}
+                  />
+                )}
+              </Field>
               <ErrorMessage name="cardName" component={ErrorText} />
+            </FormGroup>
+
+            <FormGroup>
+              <label htmlFor="cardNumber">Número do cartão</label>
+              <Field name="cardNumber">
+                {({ field }: any) => (
+                  <input
+                    {...field}
+                    type="text"
+                    placeholder="1234 5678 9012 3456"
+                    inputMode="numeric"
+                    value={applyCardMask(field.value)}
+                    onChange={(e) => {
+                      const maskedValue = applyCardMask(e.target.value);
+                      setFieldValue('cardNumber', maskedValue);
+                    }}
+                  />
+                )}
+              </Field>
+              <ErrorMessage name="cardNumber" component={ErrorText} />
             </FormGroup>
 
             <InputRow>
               <FormGroup>
-                <label htmlFor="cardNumber">Número do cartão</label>
-                <Field name="cardNumber">
-                  {({
-                    field,
-                  }: {
-                    field: {
-                      name: string;
-                      value: string;
-                      onChange: (
-                        e: React.ChangeEvent<HTMLInputElement>,
-                      ) => void;
-                      onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-                    };
-                  }) => (
+                <label htmlFor="cardExpiry">Data de vencimento</label>
+                <Field name="cardExpiry">
+                  {({ field }: any) => (
                     <input
                       {...field}
                       type="text"
-                      value={applyCardMask(field.value)}
+                      placeholder="MM/AA"
+                      inputMode="numeric"
+                      value={applyExpiryMask(field.value)}
                       onChange={(e) => {
-                        const maskedValue = applyCardMask(e.target.value);
-                        setFieldValue('cardNumber', maskedValue);
+                        const maskedValue = applyExpiryMask(e.target.value);
+                        setFieldValue('cardExpiry', maskedValue);
                       }}
                     />
                   )}
                 </Field>
-                <ErrorMessage name="cardNumber" component={ErrorText} />
+                <ErrorMessage name="cardExpiry" component={ErrorText} />
               </FormGroup>
 
               <FormGroup className="cvv">
                 <label htmlFor="cardCvv">CVV</label>
                 <Field name="cardCvv">
-                  {({
-                    field,
-                  }: {
-                    field: {
-                      name: string;
-                      value: string;
-                      onChange: (
-                        e: React.ChangeEvent<HTMLInputElement>,
-                      ) => void;
-                      onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-                    };
-                  }) => (
+                  {({ field }: any) => (
                     <input
                       {...field}
                       type="text"
+                      placeholder="123"
+                      inputMode="numeric"
                       value={applyCvvMask(field.value)}
                       onChange={(e) => {
                         const maskedValue = applyCvvMask(e.target.value);
@@ -144,73 +203,13 @@ export const PaymentForm = ({ onSubmit, onBack, amount }: PaymentFormProps) => {
               </FormGroup>
             </InputRow>
 
-            <InputRow>
-              <FormGroup>
-                <label htmlFor="cardExpiry">Mês de vencimento</label>
-                <Field name="cardExpiry">
-                  {({
-                    field,
-                  }: {
-                    field: {
-                      name: string;
-                      value: string;
-                      onChange: (
-                        e: React.ChangeEvent<HTMLInputElement>,
-                      ) => void;
-                      onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-                    };
-                  }) => (
-                    <input
-                      {...field}
-                      type="text"
-                      value={applyMonthMask(field.value)}
-                      onChange={(e) => {
-                        const maskedValue = applyMonthMask(e.target.value);
-                        setFieldValue('cardExpiry', maskedValue);
-                      }}
-                    />
-                  )}
-                </Field>
-                <ErrorMessage name="cardExpiry" component={ErrorText} />
-              </FormGroup>
-
-              <FormGroup>
-                <label htmlFor="cardExpiryYear">Ano de vencimento</label>
-                <Field name="cardExpiryYear">
-                  {({
-                    field,
-                  }: {
-                    field: {
-                      name: string;
-                      value: string;
-                      onChange: (
-                        e: React.ChangeEvent<HTMLInputElement>,
-                      ) => void;
-                      onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-                    };
-                  }) => (
-                    <input
-                      {...field}
-                      type="text"
-                      value={applyYearMask(field.value)}
-                      onChange={(e) => {
-                        const maskedValue = applyYearMask(e.target.value);
-                        setFieldValue('cardExpiryYear', maskedValue);
-                      }}
-                    />
-                  )}
-                </Field>
-                <ErrorMessage name="cardExpiryYear" component={ErrorText} />
-              </FormGroup>
-            </InputRow>
-
             <ButtonGroup>
               <Button
                 type="submit"
                 primary
                 disabled={isSubmitting || !isValid || !dirty}
               >
-                Finalizar pagamento
+                {isSubmitting ? 'Processando...' : 'Finalizar pagamento'}
               </Button>
               <Button type="button" onClick={onBack}>
                 Voltar para a edição de endereço
