@@ -120,7 +120,7 @@ export const PaymentForm = ({ onSubmit, onBack, amount }: PaymentFormProps) => {
           onSubmit(cleanData);
         }}
       >
-        {({ setFieldValue, values, isSubmitting, isValid, dirty }) => (
+        {({ setFieldValue, isSubmitting, isValid, dirty }) => (
           <Form>
             <FormGroup>
               <label htmlFor="cardName">Nome no cartão</label>
