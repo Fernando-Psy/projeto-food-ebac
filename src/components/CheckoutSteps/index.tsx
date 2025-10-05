@@ -61,7 +61,7 @@ export const CheckoutSteps = () => {
         <PaymentForm
           onSubmit={handlePaymentSubmit}
           onBack={goToPrevStep}
-          amount={0}
+          amount={cartTotal}
         />
       )}
 
@@ -77,17 +77,10 @@ export const CheckoutSteps = () => {
             Endereço de entrega: {deliveryInfo?.address}, {deliveryInfo?.number}{' '}
             {deliveryInfo?.complement && `- ${deliveryInfo.complement}`}
           </p>
-          <p>
-            Forma de pagamento:{' '}
-            {paymentMethod === 'credit' && 'Cartão de Crédito'}
-            {paymentMethod === 'debit' && 'Cartão de Débito'}
-            {paymentMethod === 'cash' && 'Dinheiro'}
-            {paymentMethod === 'pix' && 'PIX'}
-          </p>
           <p>Total: R$ {cartTotal.toFixed(2)}</p>
 
           <Button primary onClick={resetCheckout}>
-            Fazer Novo Pedido
+            Concluir
           </Button>
         </ConfirmationContainer>
       )}

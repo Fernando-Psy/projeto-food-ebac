@@ -57,6 +57,7 @@ export const ConfirmationContainer = styled.div`
   }
 
   p {
+    color: ${theme.colors.corSecundaria};
     margin-bottom: 15px;
     font-size: 16px;
 
@@ -89,15 +90,16 @@ export const ConfirmationContainer = styled.div`
 `;
 
 export const Button = styled.button<{ primary?: boolean }>`
-  padding: 12px 24px;
+  width: 100%;
+  height: 24px;
+  margin-bottom: 32px;
   background-color: ${theme.colors.corSecundaria};
-  color: ${({ primary }) => (primary ? 'white' : theme.colors.corSecundaria)};
+  color: ${theme.colors.corPrincipal};
   border: none;
-  border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
   font-weight: bold;
-  transition: all 0.3s;
-  margin-top: 20px;
+  text-align: center;
 
   @media (max-width: 480px) {
     width: 100%;
