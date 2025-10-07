@@ -11,7 +11,6 @@ export const CheckoutSteps = () => {
     goToPrevStep,
     deliveryInfo,
     setDeliveryInfo,
-    paymentMethod,
     setPaymentMethod,
     cartTotal,
     resetCheckout,
@@ -68,16 +67,24 @@ export const CheckoutSteps = () => {
       {checkoutStep === 'confirmation' && (
         <ConfirmationContainer>
           <h2>Pedido Confirmado!</h2>
-          <p>Obrigado por escolher La Dolce Vita Trattoria!</p>
+          <p>Valor pago: R$ {cartTotal.toFixed(2)}</p>
+          <p>
+            *Nossos entregadores não estão autorizados a realizar cobranças
+            extras.
+          </p>
 
-          <div className="order-number">{generateOrderNumber()}</div>
+          <div className="order-number">
+            <p>
+              Número do pedido: <strong>{generateOrderNumber()}</strong>
+            </p>
+          </div>
 
           <p>Seu pedido está sendo preparado e chegará em breve.</p>
           <p>
             Endereço de entrega: {deliveryInfo?.address}, {deliveryInfo?.number}{' '}
             {deliveryInfo?.complement && `- ${deliveryInfo.complement}`}
           </p>
-          <p>Total: R$ {cartTotal.toFixed(2)}</p>
+          <p>Obrigado por escolher La Dolce Vita Trattoria!</p>
 
           <Button primary onClick={resetCheckout}>
             Concluir

@@ -1,11 +1,11 @@
 import { Restaurant } from '../types';
 
-const API_BASE_URL = 'https://ebac-fake-api.vercel.app/api/efood';
+const API_BASE_URL = 'https://api-ebac.vercel.app/api/efood/restaurantes';
 
 export const apiService = {
   async getRestaurants(): Promise<Restaurant[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/restaurantes`);
+      const response = await fetch(`${API_BASE_URL}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -19,7 +19,7 @@ export const apiService = {
 
   async getRestaurantById(id: string): Promise<Restaurant | null> {
     try {
-      const response = await fetch(`${API_BASE_URL}/restaurantes/${id}`);
+      const response = await fetch(`${API_BASE_URL}/${id}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
